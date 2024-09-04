@@ -4,18 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sign In & Sign Up</title>
+
+    <!-- css -->
     <link rel="stylesheet" href="../../css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/main.css">
+
+    <!-- js -->
     <script defer src="../../js/bootstrap.js"></script>
-    <script
-    src="https://code.jquery.com/jquery-3.3.1.js"
-    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-    crossorigin="anonymous">
-</script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script>
         $(function () {
             $("#header").load("../component/header.html");
-            $("#footer").load("footer.html");
+            $("#footer").load("../component/footer.html");
         });
     </script>
 </head>
@@ -23,15 +24,14 @@
 <body class="vh-100 ">
 
     <div id="header"></div>
-    <!--Remaining section-->
-    <div id="footer"></div>
+
 
     <div class=" text-center">
         <nav class="d-flex justify-content-center">
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
+                <button class="nav-link active border-2 border border-top-0 border-start-0 border-end-0" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
                     type="button" role="tab" aria-controls="nav-home" aria-selected="true">Sign In</button>
-                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
+                <button class="nav-link border-2 border border-top-0 border-start-0 border-end-0" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
                     type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Sign Up</button>
 
             </div>
@@ -82,7 +82,7 @@
 
                             <!-- btn -->
                             <div class="col-12 col-lg-6 ms-1 mt-3">
-                                <button class="main-btn p-2 col-12" onclick="SignIn();">Sign In</button>
+                                <button class=" p-2 col-12" onclick="SignIn();">Sign In</button>
                             </div>
                         </div>
                     </div>
@@ -136,7 +136,7 @@
 
                             <!-- btn -->
                             <div class="col-12 col-lg-6 ms-1 mt-3">
-                                <button class="main-btn p-2 col-12" onclick="SignUp();">Sign Up</button>
+                                <button class=" p-2 col-12" onclick="SignUp();">Sign Up</button>
                             </div>
                         </div>
                     </div>
@@ -146,6 +146,8 @@
         </div>
     </div>
 
+
+    <div id="footer"></div>
 </body>
 
 </html>
