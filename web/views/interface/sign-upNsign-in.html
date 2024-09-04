@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../css/bootstrap.css">
+    <script defer src="../../js/bootstrap.js"></script>
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous">
+</script>
+    <script>
+        $(function () {
+            $("#header").load("../component/header.html");
+            $("#footer").load("footer.html");
+        });
+    </script>
+</head>
+
+<body class="vh-100 ">
+
+    <div id="header"></div>
+    <!--Remaining section-->
+    <div id="footer"></div>
+
+    <div class=" text-center">
+        <nav class="d-flex justify-content-center">
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
+                    type="button" role="tab" aria-controls="nav-home" aria-selected="true">Sign In</button>
+                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
+                    type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Sign Up</button>
+
+            </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+
+            <!-- sign in -->
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"
+                tabindex="0">
+
+                <section>
+                    <div class="container d-flex justify-content-center align-items-center" style="height: 75vh;">
+                        <div class="row col-12 col-lg-7  d-flex justify-content-center">
+                            <div class=" col-12 text-center mb-3">
+                                <h2 class="fw-bold fs-1">Sign In</h2>
+                                <span>New to this site? <a href="">Sign Up</a></span>
+                            </div>
+                            <!-- Cookies -->
+
+                            <!-- Cookies -->
+                            <!-- email -->
+                            <div class="col-12 col-lg-6 ms-1 mt-3">
+                                <input type="email" placeholder="Email" class="my-input col-12 p-2 form-control"
+                                    id="email" value="email ">
+                            </div>
+
+                            <!-- pass -->
+                            <div class="col-12 col-lg-6 ms-1 mt-3">
+                                <div class="input-group">
+                                    <input type="password" placeholder="Password" value="password "
+                                        class="my-input col-12 p-2 form-control " id="password" data-bs-toggle="tooltip"
+                                        data-bs-placement="left"
+                                        data-bs-title="Password must be 8-20 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character.">
+                                    <button class="input-group-text my-input" onclick="showPassword();"><i
+                                            class="bi bi-eye" id="eyeIcon"></i></button>
+                                </div>
+                            </div>
+
+                            <!-- frogot and re -->
+                            <div class="col-12 col-lg-6 ms-1 mt-3 d-flex justify-content-between ">
+                                <div>
+                                    <input type="checkbox" placeholder="Password" id="rememberme"><label
+                                        for="rememberme">Remember Me</label>
+
+                                </div>
+                                <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal">Forgot Password?</a>
+                            </div>
+
+                            <!-- btn -->
+                            <div class="col-12 col-lg-6 ms-1 mt-3">
+                                <button class="main-btn p-2 col-12" onclick="SignIn();">Sign In</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+            <!-- sign in -->
+
+            <!-- sign up -->
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+                <section>
+                    <div class="container d-flex justify-content-center align-items-center" style="height: 75vh;">
+                        <div class="row col-12 col-lg-7  d-flex justify-content-center">
+                            <div class=" col-12 text-center">
+                                <h3 class="fw-bold fs-2">Sign Up</h3>
+                                <span>Already Have an Account? <a href="./signin">Sign In</a></span>
+                            </div>
+
+
+                            <!-- fname -->
+                            <div class="col-12 col-lg-6 ms-1 mt-3">
+                                <input type="text" placeholder="First Name" class="my-input col-12 p-2 form-control"
+                                    id="fname">
+                            </div>
+
+                            <!-- lname -->
+                            <div class="col-12 col-lg-6 ms-1 mt-3">
+                                <input type="text" placeholder="Last Name" class="my-input col-12 p-2 form-control"
+                                    id="lname">
+                            </div>
+
+                            <!-- email -->
+                            <div class="col-12 col-lg-6 ms-1 mt-3">
+                                <input type="email" placeholder="Email" class="my-input col-12 p-2 form-control"
+                                    id="email">
+                            </div>
+
+
+                            <!-- pass -->
+                            <div class="col-12 col-lg-6 ms-1 mt-3 ">
+
+                                <div class="input-group">
+                                    <input type="password" placeholder="Password"
+                                        class="my-input col-12 p-2 form-control " id="password" data-bs-toggle="tooltip"
+                                        data-bs-placement="left"
+                                        data-bs-title="Password must be 8-20 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character.">
+                                    <button class="input-group-text my-input" onclick="showPassword();"><i
+                                            class="bi bi-eye" id="eyeIcon"></i></button>
+                                </div>
+                            </div>
+
+                            <!-- btn -->
+                            <div class="col-12 col-lg-6 ms-1 mt-3">
+                                <button class="main-btn p-2 col-12" onclick="SignUp();">Sign Up</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <!-- sign up -->
+        </div>
+    </div>
+
+</body>
+
+</html>
