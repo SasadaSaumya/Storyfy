@@ -24,6 +24,7 @@ import org.hibernate.criterion.Restrictions;
  *
  * @author sasa
  */
+
 @WebServlet(name = "SignUp", urlPatterns = {"/SignUp"})
 public class SignUp extends HttpServlet {
 
@@ -95,6 +96,7 @@ public class SignUp extends HttpServlet {
                     }
 
                 };
+                
                 sendMailThread.start();
                 session.save(user);
                 session.beginTransaction().commit();
