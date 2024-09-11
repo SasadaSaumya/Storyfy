@@ -45,10 +45,10 @@
         <div id="header"></div><!-- End .header -->
 
         <main class="main">
-              <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
+            <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
                 <div class="container">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>                   
+                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">My Account</li>
                     </ol>
                 </div><!-- End .container -->
@@ -107,15 +107,125 @@
 
                                     <div class="tab-pane fade" id="tab-orders" role="tabpanel"
                                         aria-labelledby="tab-orders-link">
-                                        <p>No order has been made yet.</p>
-                                        
+                                        <h4>Order History</h4>
+                                        <div class="row">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">First</th>
+                                                        <th scope="col">Last</th>
+                                                        <th scope="col">Handle</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row">1</th>
+                                                        <td>Mark</td>
+                                                        <td>Otto</td>
+                                                        <td>@mdo</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">2</th>
+                                                        <td>Jacob</td>
+                                                        <td>Thornton</td>
+                                                        <td>@fat</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">3</th>
+                                                        <td>Larry</td>
+                                                        <td>the Bird</td>
+                                                        <td>@twitter</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div><!-- .End .tab-pane -->
 
                                     <div class="tab-pane fade" id="tab-downloads" role="tabpanel"
                                         aria-labelledby="tab-downloads-link">
-                                        <p>No downloads available yet.</p>
-                                        <a href="category.html" class="btn btn-outline-primary-2"><span>GO SHOP</span><i
-                                                class="icon-long-arrow-right"></i></a>
+                                        <h4>Add Your Product</h4>
+
+
+                                        <div class="row mt-4">
+
+                                            <div class="col-sm-4">
+                                                <label>Category *</label>
+                                                <select name="" id="author" class="form-control">
+                                                    <option value="0">Select</option>
+                                                </select>
+                                            </div><!-- End .col-sm-6 -->
+
+                                            <div class="col-sm-4">
+                                                <label>Author *</label>
+                                                <select name="" id="author" class="form-control">
+                                                    <option value="0">Select</option>
+                                                </select>
+                                            </div><!-- End .col-sm-6 -->
+
+                                            <div class="col-sm-4">
+                                                <label>Publisher *</label>
+                                                <select name="" id="author" class="form-control">
+                                                    <option value="0">Select</option>
+                                                </select>
+                                            </div><!-- End .col-sm-6 -->
+                                        </div><!-- End .row -->
+
+                                        <div class="row ">
+                                            <div class="col-sm-6">
+                                                <label>Title *</label>
+                                                <input type="text" class="form-control" id="title" required>
+                                            </div><!-- End .col-sm-6 -->
+
+                                            <div class="col-sm-4">
+                                                <label>ISBN *</label>
+                                                <input type="text" class="form-control" id="isbn" required>
+                                            </div><!-- End .col-sm-6 -->
+
+                                            <div class="col-sm-2">
+                                                <label>Pages *</label>
+                                                <input type="text" class="form-control" id="page" required>
+                                            </div><!-- End .col-sm-6 -->
+                                        </div><!-- End .row -->
+
+                                        <div class="row ">
+                                            <div class="col-sm-3">
+                                                <label>Status *</label>
+                                                <select name="" id="status" class="form-control">
+                                                    <option value="0">Select</option>
+                                                </select>
+                                            </div><!-- End .col-sm-6 -->
+
+                                            <div class="col-sm-4">
+                                                <label>Published Date *</label>
+                                                <input type="date" class="form-control" id="published_date" required>
+                                            </div><!-- End .col-sm-6 -->
+
+                                            <div class="col-sm-3">
+                                                <label>Price *</label>
+                                                <input type="text" class="form-control" pattern="^\d+(\.\d{2})?$"
+                                                    placeholder="0.00" id="price" required>
+                                            </div><!-- End .col-sm-6 -->
+
+                                            <div class="col-sm-2">
+                                                <label>Quantity *</label>
+                                                <input type="number" class="form-control" id="page" required>
+                                            </div><!-- End .col-sm-6 -->
+                                        </div><!-- End .row -->
+
+                                        <label>Description *</label>
+                                        <textarea type="text" class="form-control" required rows="4"
+                                            cols="50"></textarea>
+
+
+                                        <label>Product Image *</label>
+                                        <input type="file" accept="image/*" class="form-control" required>
+
+                                        <button type="button" class="btn btn-outline-primary-2  w-100 mt-3">
+                                            <span>SAVE CHANGES</span>
+                                            <i class="icon-long-arrow-right"></i>
+                                        </button>
+
                                     </div><!-- .End .tab-pane -->
 
                                     <div class="tab-pane fade" id="tab-address" role="tabpanel"
