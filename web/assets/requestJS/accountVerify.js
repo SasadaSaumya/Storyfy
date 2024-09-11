@@ -1,5 +1,12 @@
 const verifyAccount = async () => {
 
+    const popup = Notification();
+
+    popup.setProperty({
+        duration: 5000,
+        isHidePrev: true
+    });
+
     const dto = {
         verification: document.getElementById("verification").value
     };
@@ -26,7 +33,12 @@ const verifyAccount = async () => {
                 message: "Your Account Verification Success"
             });
 
-            window.location = "index.html";
+
+            setTimeout(() => {
+                window.location = "index.html";
+
+            }, 2000);
+
 
         } else {
             popup.error({
