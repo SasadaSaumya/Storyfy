@@ -9,6 +9,10 @@
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hibernate.show_sql">true</property>
         <mapping class="entity.User"/>
+        <mapping class="entity.Publisher"/>
+        <mapping class="entity.Author"/>
+        <mapping class="entity.Product_Status"/>
+        <mapping class="entity.Category"/>
 
     </session-factory>
 </hibernate-configuration>
