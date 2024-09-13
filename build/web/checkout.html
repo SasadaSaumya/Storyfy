@@ -62,8 +62,14 @@
 
                         <form action="#">
                             <div class="row">
-                                <div class="col-lg-9">
+                                <div class="col-lg-9 ">
                                     <h2 class="checkout-title">Billing Details</h2><!-- End .checkout-title -->
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="checkout-create-acc">
+                                        <label class="custom-control-label" for="checkout-create-acc">Same as your
+                                            current address?</label>
+                                    </div><!-- End .custom-checkbox -->
+
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <label>First Name *</label>
@@ -76,29 +82,19 @@
                                         </div><!-- End .col-sm-6 -->
                                     </div><!-- End .row -->
 
-                                    <label>Company Name (Optional)</label>
-                                    <input type="text" class="form-control">
+                                    <label>City *</label>
+                                    <select required class="form-control">
+                                        <option value="">Select</option>
+                                    </select>
 
-                                    <label>Country *</label>
-                                    <input type="text" class="form-control" required>
-
-                                    <label>Street address *</label>
+                                    <label>Street address Line 1 *</label>
                                     <input type="text" class="form-control" placeholder="House number and Street name"
                                         required>
+
+
+                                    <label>Street address Line 2 *</label>
                                     <input type="text" class="form-control"
                                         placeholder="Appartments, suite, unit etc ..." required>
-
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <label>Town / City *</label>
-                                            <input type="text" class="form-control" required>
-                                        </div><!-- End .col-sm-6 -->
-
-                                        <div class="col-sm-6">
-                                            <label>State / County *</label>
-                                            <input type="text" class="form-control" required>
-                                        </div><!-- End .col-sm-6 -->
-                                    </div><!-- End .row -->
 
                                     <div class="row">
                                         <div class="col-sm-6">
@@ -112,24 +108,6 @@
                                         </div><!-- End .col-sm-6 -->
                                     </div><!-- End .row -->
 
-                                    <label>Email address *</label>
-                                    <input type="email" class="form-control" required>
-
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="checkout-create-acc">
-                                        <label class="custom-control-label" for="checkout-create-acc">Create an
-                                            account?</label>
-                                    </div><!-- End .custom-checkbox -->
-
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="checkout-diff-address">
-                                        <label class="custom-control-label" for="checkout-diff-address">Ship to a
-                                            different address?</label>
-                                    </div><!-- End .custom-checkbox -->
-
-                                    <label>Order notes (optional)</label>
-                                    <textarea class="form-control" cols="30" rows="4"
-                                        placeholder="Notes about your order, e.g. special notes for delivery"></textarea>
                                 </div><!-- End .col-lg-9 -->
                                 <aside class="col-lg-3">
                                     <div class="summary">

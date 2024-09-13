@@ -46,7 +46,7 @@
     </script>
 </head>
 
-<body>
+<body onload="loadProductFeatures();">
     <div class="page-wrapper">
 
         <div id="header"></div><!-- End .header -->
@@ -75,9 +75,10 @@
                                         <label for="sortby">Sort by:</label>
                                         <div class="select-custom">
                                             <select name="sortby" id="sortby" class="form-control">
-                                                <option value="popularity" selected="selected">Most Popular</option>
-                                                <option value="rating">Most Rated</option>
-                                                <option value="date">Date</option>
+                                                <option>Sort by Latest</option>
+                                                <option>Sort by Oldest</option>
+                                                <option>Sort by Name</option>
+                                                <option>Sort by Price</option>
                                             </select>
                                         </div>
                                     </div><!-- End .toolbox-sort -->
@@ -478,7 +479,7 @@
                             <div class="sidebar sidebar-shop">
                                 <div class="widget widget-clean">
                                     <label>Filters:</label>
-                                    <a href="#" class="sidebar-filter-clear">Clean All</a>
+                                    <a href="#" class="sidebar-filter-clear" onclick="reset();">Clean All</a>
                                 </div><!-- End .widget widget-clean -->
 
                                 <div class="widget widget-collapsible">
@@ -747,6 +748,8 @@
     <script src="assets/js/main.js"></script>
 
     <script src="assets/js/notification.js"></script>
+    <script src="assets/requestJS/productSearch.js"></script>
+
 
 </body>
 
