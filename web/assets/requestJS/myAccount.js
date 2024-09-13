@@ -37,7 +37,7 @@ const loadSelectTag = (selectTagId, list, property) => {
 
 // add product 
 const addProduct = async () => {
- 
+
 
     const categorySelectTag = document.getElementById("categorySelect");
     const authorSelectTag = document.getElementById("author");
@@ -101,16 +101,22 @@ const addProduct = async () => {
 
 
         } else {
-
-
-           console.log(json);
+            popup.error({
+                title: 'Error',
+                message: json.content
+            });
 
         }
 
 
     } else {
 
-         console.log("Something went wrong");
+        popup.error({
+            title: 'Error',
+            message: "Something went wrong"
+        });
+
+        console.log("Something went wrong");
     }
 
 
