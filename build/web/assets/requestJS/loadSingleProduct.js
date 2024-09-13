@@ -39,14 +39,26 @@ const loadProduct = async () => {
 
 
             document.getElementById("add-to-cart-main").addEventListener(
-                    "click",
-                    (e) => {
-                addToCart(
+                "click",
+                (e) => {
+                    addToCart(
                         json.product.id,
                         document.getElementById("addToCartQty").value
-                        );
-                e.preventDefault();
-            }
+                    );
+                    e.preventDefault();
+                }
+            );
+
+            document.getElementById("buy-now-main").addEventListener(
+                "click",
+                (e) => {
+                    addToCart(
+                        json.product.id,
+                        document.getElementById("addToCartQty").value
+                    );
+                    window.location = "cart.html";
+                    e.preventDefault();
+                }
             );
 
 
@@ -66,18 +78,18 @@ const loadProduct = async () => {
                 productClone.querySelector("#similar-author").innerHTML = item.author.name;
 
                 productClone.querySelector("#similar-price").innerHTML = new Intl.NumberFormat(
-                        "en-US",
-                        {
-                            minimumFractionDigits: 2
-                        }
+                    "en-US",
+                    {
+                        minimumFractionDigits: 2
+                    }
                 ).format(item.price);
 
                 productClone.querySelector("#similar-add-to-cart").addEventListener(
-                        "click",
-                        (e) => {
-                    addToCart(item.id, 1);
-                    e.preventDefault();
-                });
+                    "click",
+                    (e) => {
+                        addToCart(item.id, 1);
+                        e.preventDefault();
+                    });
 
 
                 console.log(productClone);
@@ -114,8 +126,8 @@ const addToCart = async (id, qty) => {
 
 
     const response = await fetch(
-            "AddToCart?id=" + id + "&qty=" + qty,
-            );
+        "AddToCart?id=" + id + "&qty=" + qty,
+    );
 
     if (response.ok) {
         const json = await response.json();
