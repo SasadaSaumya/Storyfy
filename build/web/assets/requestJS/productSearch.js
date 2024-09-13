@@ -152,12 +152,41 @@ const searchProduct = async (firstResult) => {
     //notification 
     const popup = Notification();
 
-    //Get selected category
-    let categoryName = document.getElementById("radio-cate").nextElementSibling.innerHTML;
+    // let categoryName = document.getElementById("radio-cate").checked.innerHTML;
 
-    let publisherName = document.getElementById("radio-publisher").nextElementSibling.innerHTML;
+    // let publisherName = document.getElementById("radio-publisher").checked.innerHTML;
 
-    let authorName = document.getElementById("radio-authors").nextElementSibling.innerHTML;
+    // let authorName = document.getElementById("radio-authors").checked.innerHTML;
+
+    function getCheckedRadioText(inputName) {
+        // Select all radio buttons with the given name
+        const radios = document.querySelectorAll('input[name="' + inputName + '"]');
+
+        // Iterate through each radio button
+        for (const radio of radios) {
+            // Check if the radio button is checked
+            if (radio.checked) {
+                // Get the parent <div> container
+                const container = radio.closest('.col-12');
+                // Find the <a> tag within that container
+                const link = container.querySelector('a');
+                // Return the text content of the <a> tag
+                return link ? link.textContent : '';
+            }
+        }
+        return ''; // Return an empty string if no radio button is checked
+    }
+
+    // Example usage
+    let categoryName = getCheckedRadioText("radio-category");
+    console.log(categoryName);
+
+    let authorName = getCheckedRadioText("radio-authors");
+    console.log(authorName);
+
+    let publisherName = getCheckedRadioText("radio-publisher");
+    console.log(publisherName);
+
 
 
     let priceRangeStart = document.getElementById("minValue").innerHTML;
@@ -181,14 +210,14 @@ const searchProduct = async (firstResult) => {
 
     // send post request 
     const response = await fetch(
-            "SearchProducts",
-            {
-                method: "POST",
-                body: JSON.stringify(data),
-                header: {
-                    "Content-Type": "application/json"
-                }
+        "SearchProducts",
+        {
+            method: "POST",
+            body: JSON.stringify(data),
+            header: {
+                "Content-Type": "application/json"
             }
+        }
     );
 
     // request handling

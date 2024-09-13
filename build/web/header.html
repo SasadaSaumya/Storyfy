@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="assets/css/demos/demo-20.css">
 </head>
 
-<body >
+<body>
     <header class="header header-12">
         <div class="header-top">
             <div class="container">
@@ -94,25 +94,7 @@
                                 <input type="search" class="form-control" name="q" id="q"
                                     placeholder="Search product ..." required>
 
-                                <div class="select-custom">
-                                    <select id="cat" name="cat">
-                                        <option value="">All Departments</option>
-                                        <option value="1">Fashion</option>
-                                        <option value="2">- Women</option>
-                                        <option value="3">- Men</option>
-                                        <option value="4">- Jewellery</option>
-                                        <option value="5">- Kids Fashion</option>
-                                        <option value="6">Electronics</option>
-                                        <option value="7">- Smart TVs</option>
-                                        <option value="8">- Cameras</option>
-                                        <option value="9">- Games</option>
-                                        <option value="10">Home &amp; Garden</option>
-                                        <option value="11">Motors</option>
-                                        <option value="12">- Cars and Trucks</option>
-                                        <option value="15">- Boats</option>
-                                        <option value="16">- Auto Tools &amp; Supplies</option>
-                                    </select>
-                                </div><!-- End .select-custom -->
+
                                 <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
                             </div><!-- End .header-search-wrapper -->
                         </form>
@@ -132,17 +114,17 @@
                             <a href="wishlist.html" title="Wishlist">
                                 <div class="icon">
                                     <i class="icon-heart-o"></i>
-                                    <span class="wishlist-count badge">3</span>
+                                    <!-- <span class="wishlist-count badge">3</span> -->
                                 </div>
                                 <p>Wishlist</p>
                             </a>
                         </div><!-- End .compare-dropdown -->
 
                         <div class="dropdown cart-dropdown" onclick="window.location='cart.html'">
-                            <a href="cart.html" class="dropdown-toggle" role="button" >
+                            <a href="cart.html" class="dropdown-toggle" role="button">
                                 <div class="icon">
                                     <i class="icon-shopping-cart"></i>
-                                    <span class="cart-count">2</span>
+                                    <!-- <span class="cart-count">2</span> -->
                                 </div>
                                 <p>Cart</p>
                             </a>
@@ -167,18 +149,8 @@
 
                             <div class="dropdown-menu">
                                 <nav class="side-nav">
-                                    <ul class="menu-vertical sf-arrows">
-                                        <li class="item-lead"><a href="#">Best Books of 2018</a></li>
-                                        <li class="item-lead"><a href="#">New for 2019</a></li>
-                                        <li><a href="#">Art & Photography</a></li>
-                                        <li><a href="#">Biography</a></li>
-                                        <li><a href="#">Children's Books</a></li>
-                                        <li><a href="#">Crafts & Hobbies</a></li>
-                                        <li><a href="#">Fiction</a></li>
-                                        <li><a href="#">Food & Drink</a></li>
-                                        <li><a href="#">Graphic Novels, Anime & Manga</a></li>
-                                        <li><a href="#">Health & Fitness Books</a></li>
-                                        <li><a href="#">Young Adult</a></li>
+                                    <ul class="menu-vertical sf-arrows" id="category-main-hd">
+                                        <li id="category-sub-hd"><a href="#" id="category-text-hd">Young Adult</a></li>
                                     </ul><!-- End .menu-vertical -->
                                 </nav><!-- End .side-nav -->
                             </div><!-- End .dropdown-menu -->
@@ -195,7 +167,7 @@
 
                                 </li>
                                 <li>
-                                    <a href="shop.html" >Shop</a>
+                                    <a href="shop.html">Shop</a>
 
                                 </li>
                                 <li>
@@ -207,14 +179,8 @@
                                                 <div class="menu-col">
                                                     <div class="menu-title">Authors Names</div>
                                                     <!-- End .menu-title -->
-                                                    <ul>
-                                                        <li><a >Default</a></li>
-                                                        <li><a>Centered</a></li>
-                                                        <li><a">Gallery</a></li>
-                                                        <li><a >Sticky Info</a></li>
-                                                        <li><a>Boxed With Sidebar</a></li>
-                                                        <li><a >Full Width</a></li>
-                                                        <li><a>Masonry Sticky Info</a></li>
+                                                    <ul id="authors-main-hd">
+                                                        <li id="authors-sub-hd"><a id="authors-text-hd">Masonry Sticky Info</a></li>
                                                     </ul>
                                                 </div><!-- End .menu-col -->
                                             </div><!-- End .col-md-6 -->
@@ -520,9 +486,9 @@
     <script src="assets/js/demos/demo-20.js"></script>
 
     <script src="assets/requestJS/header.js"></script>
-    
-      <!-- my js -->
-      
+
+    <!-- my js -->
+
 </body>
 
 </html>

@@ -10,11 +10,33 @@ const LoadUserHeaderFeatures = async () => {
 
         console.log(json);
 
+        loadOptionHeader("category", json.categoryList);
+        loadOptionHeader("authors", json.authorList);
+
 
     } else {
         console.log("Something went wrong");
 
     }
+
+
+};
+
+const loadOptionHeader = (prefix, dataList) => {
+
+    let main = document.getElementById(prefix + "-main-hd");
+    let sub = document.getElementById(prefix + "-sub-hd");
+
+    main.innerHTML = "";
+
+    dataList.forEach(data => {
+        let sub_clone = sub.cloneNode(true);
+
+        sub_clone.querySelector("#" + prefix + "-text-hd").innerHTML = data.name;
+
+
+        main.appendChild(sub_clone);
+    });
 
 
 };
