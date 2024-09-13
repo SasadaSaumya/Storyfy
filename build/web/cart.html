@@ -28,6 +28,8 @@
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <!-- Main CSS File -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/notification.css">
+
 
     <!-- js -->
     <script src="https://code.jquery.com/jquery-3.3.1.js"
@@ -40,7 +42,7 @@
     </script>
 </head>
 
-<body>
+<body onload="loadCartItem();">
     <div class="page-wrapper">
 
         <div id="header"></div><!-- End .header -->
@@ -73,30 +75,30 @@
                                         </tr>
                                     </thead>
 
-                                    <tbody>
-                                        <tr>
+                                    <tbody id="cart-item-container">
+                                        <tr id="cart-item-row">
                                             <td class="product-col">
                                                 <div class="product">
                                                     <figure class="product-media">
-                                                        <a href="#">
+                                                        <a href="#" id="cart-item-a">
                                                             <img src="assets/images/products/table/product-1.jpg"
-                                                                alt="Product image">
+                                                                alt="Product image" id="cart-item-img">
                                                         </a>
                                                     </figure>
 
                                                     <h3 class="product-title">
-                                                        <a href="#">Beige knitted elastic runner shoes</a>
+                                                        <a href="#" id="cart-item-title">Beige knitted elastic runner shoes</a>
                                                     </h3><!-- End .product-title -->
                                                 </div><!-- End .product -->
                                             </td>
-                                            <td class="price-col">$84.00</td>
+                                            <td class="price-col" id="cart-item-price">$84.00</td>
                                             <td class="quantity-col">
                                                 <div class="cart-product-quantity">
                                                     <input type="number" class="form-control disabled" value="1" min="1"
-                                                        max="10" step="1" data-decimals="0" required>
+                                                        max="10" step="1" id="cart-item-qty" data-decimals="0" required>
                                                 </div><!-- End .cart-product-quantity -->
                                             </td>
-                                            <td class="total-col">$84.00</td>
+                                            <td class="total-col" id="cart-item-subtotal">$84.00</td>
                                             <td class="remove-col"><button class="btn-remove"><i
                                                         class="icon-close"></i></button></td>
                                         </tr>
@@ -114,18 +116,18 @@
                                         <tbody>
                                             <tr class="summary-subtotal">
                                                 <td>Subtotal:</td>
-                                                <td>$160.00</td>
+                                                <td id="subtotal">$160.00</td>
                                             </tr><!-- End .summary-subtotal -->
 
                                             <tr class="summary-subtotal">
-                                                <td>Shipping:</td>
-                                                <td>$160.00</td>
+                                                <td>Total Products:</td>
+                                                <td id="cart-total-qty">$160.00</td>
                                             </tr><!-- End .summary-subtotal -->
 
 
                                             <tr class="summary-total">
                                                 <td>Total:</td>
-                                                <td>$160.00</td>
+                                                <td id="cart-total">$160.00</td>
                                             </tr><!-- End .summary-total -->
                                         </tbody>
                                     </table><!-- End .table table-summary -->
@@ -158,6 +160,11 @@
     <script src="assets/js/bootstrap-input-spinner.js"></script>
     <!-- Main JS File -->
     <script src="assets/js/main.js"></script>
+
+    <script src="assets/js/notification.js"></script>
+
+    <script src="assets/requestJS/cart.js"></script>
+
 </body>
 
 
