@@ -70,12 +70,12 @@ const addProduct = async () => {
 
 
     const response = await fetch(
-            "AddProduct",
-            {
-                method: "POST",
-                body: data
+        "AddProduct",
+        {
+            method: "POST",
+            body: data
 
-            }
+        }
     );
 
     const popup = Notification();
@@ -93,6 +93,19 @@ const addProduct = async () => {
         console.log(json);
 
         if (json.success) {
+
+            image1Tag.value = null;
+            categorySelectTag.value = 0;
+            authorSelectTag.value = 0;
+            publisherTag.value = 0;
+            isbnTag.value = "";
+            pagesTag.value = "";
+            statusSelectTag.value = 0;
+            publishedDateTag.value = "";
+            descriptionTag.value = "";
+            titleTag.value = "";
+            priceTag.value = "";
+            qtyTag.value = "";
 
             popup.success({
                 title: 'Success',
