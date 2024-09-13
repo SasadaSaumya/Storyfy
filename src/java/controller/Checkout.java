@@ -182,7 +182,7 @@ public class Checkout extends HttpServlet {
 
                 Order_Item order_Item = new Order_Item();
                 order_Item.setOrder(orders);
-                order_Item.setOrder_status(order_Status);
+                order_Item.setOrder_Status(order_Status);
                 order_Item.setProduct(product);
                 order_Item.setQty(cartItem.getQty());
                 session.save(order_Item);
