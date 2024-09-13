@@ -1,5 +1,9 @@
 package model;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 public class Validations {
 
     public static boolean isEmailValid(String email) {
@@ -32,4 +36,14 @@ public class Validations {
 
     }
 
+    public static boolean isValidDate(String dateString) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        try {
+
+            LocalDate.parse(dateString, formatter);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+    }
 }

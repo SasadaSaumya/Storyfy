@@ -13,6 +13,7 @@
         <mapping class="entity.Author"/>
         <mapping class="entity.Product_Status"/>
         <mapping class="entity.Category"/>
+        <mapping class="entity.Product"/>
 
     </session-factory>
 </hibernate-configuration>
