@@ -42,7 +42,7 @@
     </script>
 </head>
 
-<body>
+<body onload="loadData();">
     <div class="page-wrapper">
         <div id="header"></div><!-- End .header -->
 
@@ -90,8 +90,8 @@
                                     </select>
 
                                     <label>Street address Line 1 *</label>
-                                    <input type="text" class="form-control" id="address1" placeholder="House number and Street name"
-                                        required>
+                                    <input type="text" class="form-control" id="address1"
+                                        placeholder="House number and Street name" required>
 
 
                                     <label>Street address Line 2 *</label>
@@ -125,7 +125,8 @@
 
                                             <tbody id="tbody">
                                                 <tr id="item-tr">
-                                                    <td><a href="#" id="item-title">Beige knitted elastic runner shoes x &nbsp;<span id="item-qty"> 10</span></a></td>
+                                                    <td><a href="#" id="item-title">Beige knitted elastic runner shoes x
+                                                            &nbsp;</a> <span id="item-qty"> 10</span></td>
                                                     <td id="item-subtotal">$84.00</td>
                                                 </tr>
                                                 <tr class="summary-subtotal" id="order-subtotal-tr">
@@ -168,7 +169,8 @@
                                             </div><!-- End .card -->
                                         </div><!-- End .accordion -->
 
-                                        <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">
+                                        <button type="button" class="btn btn-outline-primary-2 btn-order btn-block"
+                                            onclick="checkout();">
                                             <span class="btn-text">Place Order</span>
                                             <span class="btn-hover-text">Proceed to Checkout</span>
                                         </button>
@@ -188,6 +190,8 @@
     <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
 
 
+    <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
+
 
     <!-- Plugins JS File -->
     <script src="assets/js/jquery.min.js"></script>
@@ -198,6 +202,9 @@
     <script src="assets/js/owl.carousel.min.js"></script>
     <!-- Main JS File -->
     <script src="assets/js/main.js"></script>
+
+    
+
     <script src="assets/js/notification.js"></script>
 
 

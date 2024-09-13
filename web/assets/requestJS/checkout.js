@@ -1,9 +1,38 @@
-async function loadData() {
-    const popup = Notification();
+//Payment completed.It can be a successful failure.
+payhere.onCompleted = function onCompleted(orderId) {
 
-    const  response = await fetch(
-            "LoadCheckout"
-            );
+    const popup = Notification();
+    popup.setProperty({
+        duration: 5000,
+        isHidePrev: true
+    });
+
+    popup.success({
+        message: "Order Placed. Thank You..."
+    });
+
+    window.location = "index.html";
+
+};
+
+//Payment window closed
+payhere.onDismissed = function onDismissed() {
+    // Note: Prompt user to pay again or show an error page
+    console.log("Payment dismissed");
+};
+
+//Error occurred
+payhere.onError = function onError(error) {
+    // Note: show an error page
+    console.log("Error:" + error);
+};
+
+async function loadData() {
+    // const popup = Notification();
+
+    const response = await fetch(
+        "LoadCheckout"
+    );
 
     if (response.ok) {
         const json = await response.json();
@@ -12,7 +41,7 @@ async function loadData() {
         if (json.success) {
 
             //store response data
-            address = json.address;
+            const address = json.address;
             const cityList = json.cityList;
             const cartList = json.cartList;
 
@@ -31,8 +60,8 @@ async function loadData() {
             let currentAddressCheckbox = document.getElementById("checkbox1");
             currentAddressCheckbox.addEventListener("change", e => {
 
-                let first_name = document.getElementById("firname");
-                let last_name = document.getElementById("laname");
+                let first_name = document.getElementById("first-name");
+                let last_name = document.getElementById("last-name");
                 let city = document.getElementById("city");
                 let address1 = document.getElementById("address1");
                 let address2 = document.getElementById("address2");
@@ -41,28 +70,41 @@ async function loadData() {
 
                 if (currentAddressCheckbox.checked) {
                     first_name.value = address.first_name;
+                    first_name.disabled = true;
                     last_name.value = address.last_name;
+                    last_name.disabled = true;
 
                     city.value = address.city.id;
                     city.disabled = true;
                     city.dispatchEvent(new Event("change"));
 
                     address1.value = address.line1;
+                    address1.disabled = true;
                     address2.value = address.line2;
+                    address2.disabled = true;
                     postal_code.value = address.postal_code;
+                    postal_code.disabled = true;
                     mobile.value = address.mobile;
+                    mobile.disabled = true;
                 } else {
+
                     first_name.value = "";
+                    first_name.disabled = false;
                     last_name.value = "";
+                    last_name.disabled = false;
 
                     city.value = 0;
                     city.disabled = false;
                     city.dispatchEvent(new Event("change"));
 
                     address1.value = "";
+                    address1.disabled = false;
                     address2.value = "";
+                    address2.disabled = false;
                     postal_code.value = "";
+                    postal_code.disabled = false;
                     mobile.value = "";
+                    mobile.disabled = false;
                 }
             });
 
@@ -85,91 +127,64 @@ async function loadData() {
                 let item_sub_total = item.product.price * item.qty;
                 sub_total += item_sub_total;
 
-                item_clone.querySelector("#item-subtotal").innerHTML = new Intl.NumberFormat(
-                        "en-US", {
-                            minimumFractionDigits: 2
-                        }
+                item_clone.querySelector("#item-subtotal").innerHTML = "Rs. " + new Intl.NumberFormat(
+                    "en-US",
+                    {
+                        minimumFractionDigits: 2
+                    }
                 ).format(item_sub_total);
 
                 tbody.appendChild(item_clone);
+
             });
-            order_subtotal_tr.querySelector("#subtotal").innerHTML = new Intl.NumberFormat(
-                    "en-US",
-                    {
-                        minimumFractionDigits: 2
-                    }
+
+            order_subtotal_tr.querySelector("#subtotal").innerHTML = "Rs. " + new Intl.NumberFormat(
+                "en-US",
+                {
+                    minimumFractionDigits: 2
+                }
             ).format(sub_total);
             tbody.appendChild(order_subtotal_tr);
-
             //update shipping charges
 
-            //get cart item count
-            let item_count = cartList.length;
-
-            let shipping_amount = 0;
-
-            if (citySelect.value == 1) {
-                //Colombo
-                shipping_amount = item_count * 1000;
-            } else {
-                //Out of Colombo
-                shipping_amount = item_count * 2500;
-
-            }
-
-            order_shipping_tr.querySelector("#shipping-amount").innerHTML = new Intl.NumberFormat(
-                    "en-US",
-                    {
-                        minimumFractionDigits: 2
-                    }
-            ).format(shipping_amount);
-            tbody.appendChild(order_shipping_tr);
-            //update total
-            let total = sub_total + shipping_amount;
-            order_total_tr.querySelector("#total").innerHTML = new Intl.NumberFormat(
-                    "en-US",
-                    {
-                        minimumFractionDigits: 2
-                    }
-            ).format(total);
-            tbody.appendChild(order_total_tr);
-
-            //update total on city change
             citySelect.addEventListener("change", e => {
+
                 //update shipping charges
-                //get cart item count
-                let item_count = cartList.length;
+                let item_count = cartList.length; //cart item count
 
                 let shipping_amount = 0;
 
+                //check city colombo or not
+
                 if (citySelect.value == 1) {
-                    //Colombo
-                    shipping_amount = item_count * 1000;
+
+                    //colombo
+                    shipping_amount = item_count * 350;
+
                 } else {
-                    //Out of Çolombo
-                    shipping_amount = item_count * 2500;
+
+                    //out of colombo
+                    shipping_amount = item_count * 500;
                 }
-                order_shipping_tr.querySelector("#shipping-amount").innerHTML = new Intl.NumberFormat(
-                        "en-US",
-                        {
-                            minimumFractionDigits: 2
-                        }
+
+                order_shipping_tr.querySelector("#shipping-amount").innerHTML = "Rs. " + new Intl.NumberFormat(
+                    "en-US",
+                    {
+                        minimumFractionDigits: 2
+                    }
                 ).format(shipping_amount);
                 tbody.appendChild(order_shipping_tr);
 
                 //update total
-                let total = sub_total + shipping_amount;
-                order_total_tr.querySelector("#total").innerHTML = new Intl.NumberFormat(
-                        "en-US",
-                        {
-
-                            minimumFractionDigits: 2
-                        }
-                ).format(total);
+                order_total_tr.querySelector("#total").innerHTML = "Rs. " + new Intl.NumberFormat(
+                    "en-US",
+                    {
+                        minimumFractionDigits: 2
+                    }
+                ).format((sub_total + shipping_amount));
                 tbody.appendChild(order_total_tr);
 
             });
-            city.dispatchEvent(new Event("change"));
         } else {
             window.location = "login.html";
         }
@@ -178,14 +193,14 @@ async function loadData() {
 }
 
 async function checkout() {
-    const popup2 = Notification();
+
 
     //check address status
     let isCurrentAddress = document.getElementById("checkbox1").checked;
 
     //get address data
-    let first_name = document.getElementById("first_name");
-    let last_name = document.getElementById("last_name");
+    let first_name = document.getElementById("first-name");
+    let last_name = document.getElementById("last-name");
     let city = document.getElementById("city");
     let address1 = document.getElementById("address1");
     let address2 = document.getElementById("address2");
@@ -205,29 +220,46 @@ async function checkout() {
     };
 
     const response = await fetch(
-            "Checkout",
-            {
-                method: "POST",
-                body: JSON.stringify(data),
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            });
+        "Checkout",
+        {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+
+    const popup = Notification();
+    popup.setProperty({
+        duration: 5000,
+        isHidePrev: true
+    });
 
     if (response.ok) {
+
         const json = await response.json();
-        console.log(json);
+
         if (json.success) {
-            popup2.success({
-                message: "Checkout Completed"
-            });
+
+            payhere.startPayment(json.payhereJson);
+
         } else {
-            popup2.error({
+
+            console.log(json);
+
+            popup.error({
                 message: json.message
             });
+
         }
 
     } else {
-        console.log("Try again later!");
+
+        popup.error({
+            message: "Try again later"
+        });
+
+        console.log("Try again later");
+
     }
 }
