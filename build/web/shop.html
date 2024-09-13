@@ -34,6 +34,9 @@
 
     <link rel="stylesheet" href="assets/css/notification.css">
 
+    <link rel="stylesheet" href="assets/css/shop.css">
+
+
 
     <!-- js -->
     <script src="https://code.jquery.com/jquery-3.3.1.js"
@@ -174,7 +177,7 @@
                                             <div class="filter-items" id="authors-main">
                                                 <div class="col-12" id="authors-sub">
 
-                                                    <input type="radio" name="radio-category"
+                                                    <input type="radio" name="radio-authors"
                                                         id="radio-authors">&nbsp;<span id="authors-text">Love</span>
 
                                                 </div>
@@ -183,7 +186,7 @@
                                     </div><!-- End .collapse -->
                                 </div><!-- End .widget -->
 
-                                <button onclick="searchProduct(0);">dsfsdfsdf</button>
+
 
                                 <div class="widget widget-collapsible">
                                     <h3 class="widget-title">
@@ -198,7 +201,7 @@
                                             <div class="filter-items" id="publisher-main">
                                                 <div class="col-12" id="publisher-sub">
 
-                                                    <input type="radio" name="radio-category"
+                                                    <input type="radio" name="radio-publisher"
                                                         id="radio-publisher">&nbsp;<span id="publisher-text">Love</span>
 
                                                 </div>
@@ -216,35 +219,24 @@
                                         </a>
                                     </h3><!-- End .widget-title -->
 
-                                    <div class="shop-submenu">
-                                        <div id="price-filter" class="iz-accordion-collapse collapse"
-                                            data-bs-parent="#accordionFlushFilterMenu">
-                                            <div class="iz-accordion-body">
-                                                <div class="price-input d-flex gap-3 pb-4">
-                                                    <div class="field ps-3">
-                                                        <span>Rs:</span>
-                                                        <input type="number" class="input-min" value="0">
-                                                    </div>
-                                                    <div class="field ps-3">
-                                                        <span>Rs:</span>
-                                                        <input type="number" class="input-max" value="50000">
-                                                    </div>
-                                                </div>
-                                                <div class="slider">
-                                                    <div class="progress"></div>
-                                                </div>
-                                                <div class="range-input">
-                                                    <input data-range="max" type="range"
-                                                        class="range-min shopFilterPrice" min="0" max="50000" value="0"
-                                                        step="100">
-                                                    <input data-range="min" type="range"
-                                                        class="range-max shopFilterPrice" min="0" max="50000"
-                                                        value="50000" step="100">
-                                                </div>
+                                    <div class="shop-submenu ">
+
+                                        <div class="slider-container ">
+                                            <div class="slider">
+                                                <div class="slider-track"></div>
+                                                <div class="slider-range"></div>
+                                                <div class="slider-handle" id="handleMin"></div>
+                                                <div class="slider-handle" id="handleMax"></div>
+                                            </div>
+                                            <div class="slider-values">
+                                                <p>Price Range: Rs<span id="minValue">100</span> - Rs<span
+                                                        id="maxValue">800</span></p>
                                             </div>
                                         </div>
                                     </div>
                                 </div><!-- End .widget -->
+
+                                <button onclick="searchProduct(0);" class="w-100 btn-danger">Search</button>
                             </div><!-- End .sidebar sidebar-shop -->
                         </aside><!-- End .col-lg-3 -->
                     </div><!-- End .row -->
@@ -273,6 +265,7 @@
     <script src="assets/js/nouislider.min.js"></script>
     <!-- Main JS File -->
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/shop.js"></script>
 
     <script src="assets/js/notification.js"></script>
     <script src="assets/requestJS/productSearch.js"></script>
