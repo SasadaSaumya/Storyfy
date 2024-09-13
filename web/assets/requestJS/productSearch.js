@@ -3,22 +3,10 @@ var stProduct = document.getElementById("product-card");
 var currentPage = 0;
 var paginationButton = document.getElementById("pagination-item");
 
-// price range listner
-document.querySelectorAll(".shopFilterPrice").forEach((element) => {
-    element.addEventListener("change", (event) => {
-        let range = event.target;
-        if (range.dataset.range == "min") {
-            highest_price = range.value;
-        } else if (range.dataset.range == "max") {
-            lowest_price = range.value == 0 ? 1 : range.value;
-        }
-  
-    });
-});
-
 const reset = () => {
     window.location.reload();
 };
+
 
 const loadProductFeatures = async () => {
 
@@ -47,7 +35,7 @@ const loadProductFeatures = async () => {
 
         popup.error({
             title: 'Error',
-            message: "Error"
+            message: "Something went wrong"
         });
 
     }
@@ -171,10 +159,9 @@ const searchProduct = async (firstResult) => {
 
     let authorName = document.getElementById("radio-authors").nextElementSibling.innerHTML;
 
-    let priceRangeStart = $('#slider-range').slider('values', 0);
-    let priceRangeEnd = $('#slider-range').slider('values', 1);
 
-
+    let priceRangeStart = document.getElementById("minValue").innerHTML;
+    let priceRangeEnd = document.getElementById("maxValue").innerHTML;
 
     let sortText = document.getElementById("sortby").value;
 
@@ -192,41 +179,41 @@ const searchProduct = async (firstResult) => {
     console.log(data);
 
 
-    // // send post request 
-    // const response = await fetch(
-    //         "SearchProducts",
-    //         {
-    //             method: "POST",
-    //             body: JSON.stringify(data),
-    //             header: {
-    //                 "Content-Type": "application/json"
-    //             }
-    //         }
-    // );
+    // send post request 
+    const response = await fetch(
+            "SearchProducts",
+            {
+                method: "POST",
+                body: JSON.stringify(data),
+                header: {
+                    "Content-Type": "application/json"
+                }
+            }
+    );
 
-    // // request handling
-    // if (response.ok) {
-    //     const json = await response.json();
-    //     console.log(json);
+    // request handling
+    if (response.ok) {
+        const json = await response.json();
+        console.log(json);
 
-    //     if (json.success) {
-    //         console.log("success");
+        if (json.success) {
+            console.log("success");
 
-    //         updateProductView(json);
+            updateProductCard(json);
 
-    //     } else {
+        } else {
 
-    //         popup.error({
-    //             title: 'Error',
-    //             message: "Error"
-    //         });
+            popup.error({
+                title: 'Error',
+                message: "Error"
+            });
 
-    //     }
-    // } else {
-    //     popup.error({
-    //         title: 'Error',
-    //         message: "Error"
-    //     });
-    // }
+        }
+    } else {
+        popup.error({
+            title: 'Error',
+            message: "Error"
+        });
+    }
 
 };

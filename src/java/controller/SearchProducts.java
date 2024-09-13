@@ -1,4 +1,3 @@
-
 package controller;
 
 import com.google.gson.Gson;
@@ -21,10 +20,10 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
-
 @WebServlet(name = "SearchProducts", urlPatterns = {"/SearchProducts"})
 public class SearchProducts extends HttpServlet {
-  @Override
+
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         Gson gson = new Gson();
@@ -34,7 +33,7 @@ public class SearchProducts extends HttpServlet {
 
         //Get request json
         JsonObject requestJsonObject = gson.fromJson(request.getReader(), JsonObject.class);
-
+        System.out.println(requestJsonObject);
         Session session = HibernateUtil.getSessionFactory().openSession();
 
         //search all products
@@ -49,7 +48,6 @@ public class SearchProducts extends HttpServlet {
             Criteria criteria2 = session.createCriteria(Category.class);
             criteria2.add(Restrictions.eq("name", categoryName));
             Category category = (Category) criteria2.uniqueResult();
-
 
             //Filter product by model list from db
             criteria1.add(Restrictions.eq("category", category));
@@ -81,7 +79,6 @@ public class SearchProducts extends HttpServlet {
             //Filter product by publisher from db
             criteria1.add(Restrictions.eq("publisher", publisher));
         }
-
 
         double priceRangeStart = requestJsonObject.get("priceRangeStart").getAsDouble();
         double priceRangeEnd = requestJsonObject.get("priceRangeEnd").getAsDouble();
