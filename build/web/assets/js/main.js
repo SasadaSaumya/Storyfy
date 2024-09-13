@@ -170,18 +170,18 @@ $(document).ready(function () {
 		if (priceSlider == null) return;
 
 		noUiSlider.create(priceSlider, {
-			start: [ 0, 750 ],
+			start: [ 0, 3000 ],
 			connect: true,
 			step: 50,
 			margin: 200,
 			range: {
 				'min': 0,
-				'max': 1000
+				'max': 7000
 			},
 			tooltips: true,
 			format: wNumb({
 		        decimals: 0,
-		        prefix: '$'
+		        prefix: 'Rs'
 		    })
 		});
 
