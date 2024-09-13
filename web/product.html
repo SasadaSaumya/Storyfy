@@ -43,7 +43,7 @@
     </script>
 </head>
 
-<body>
+<body onload="loadProduct();">
     <div class="page-wrapper ">
         <div id="header"></div><!-- End .header -->
 
@@ -70,7 +70,7 @@
                                         <div>
                                             <figure>
                                                 <img src="assets/images/demos/demo-20/products/product-1.jpg"
-                                                    alt="product image" style="height:700px">
+                                                    alt="product image" style="height:700px" id="image1">
 
 
                                             </figure><!-- End .product-main-image -->
@@ -92,22 +92,40 @@
                                             </div><!-- End .product-price -->
 
                                             <div class="product-content">
-                                                <p>Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae
+                                                <p id="product_des">Sed egestas, ante et vulputate volutpat, eros pede
+                                                    semper est, vitae
                                                     luctus metus libero eu augue. Morbi purus libero, faucibus
                                                     adipiscing. Sed lectus. </p>
                                             </div><!-- End .product-content -->
 
+                                            <div class="details-filter-row details-row-size">
+                                                <label>Pages:</label>
+                                                <span id="pages">10</span> &nbsp;&nbsp;
+                                                <label>Published Date:</label>
+                                                <span id="published_date">10</span>
+                                            </div>
+
+                                            <div class="details-filter-row details-row-size">
+                                                <label>ISBN:</label>
+                                                <span id="isbn">ds</span>
+                                            </div>
 
 
                                             <div class="details-filter-row details-row-size">
-                                                <label for="size">Author:</label>
-                                               <span id="author">ds</span>
+                                                <label>Publisher:</label>
+                                                <span id="publisher">ds</span>
+                                            </div>
+
+
+                                            <div class="details-filter-row details-row-size">
+                                                <label>Author:</label>
+                                                <span id="author">ds</span>
                                             </div><!-- End .details-filter-row -->
 
                                             <div class="details-filter-row details-row-size">
                                                 <label for="qty">Qty:</label>
                                                 <div class="product-details-quantity">
-                                                    <input type="number" id="qty" class="form-control" value="1" min="1"
+                                                    <input type="number" id="addToCartQty" class="form-control" value="1" min="1"
                                                         max="10" step="1" data-decimals="0" required>
                                                 </div><!-- End .product-details-quantity -->
                                             </div><!-- End .details-filter-row -->
@@ -115,9 +133,9 @@
                                         </div><!-- End .product-details-action -->
                                         <!-- End .product-details-action -->
                                         <div class="row col-12">
-                                            <a href="#" class="btn-product  w-50 "><span>Buy Now</span></a>
+                                            <a href="#" class="btn-product  w-50 " id="add-to-cart-main"><span>Buy Now</span></a>
 
-                                            <a href="#" class="btn-product btn-cart col-2 bg-primary text-white "
+                                            <a id="add-to-cart-main" href="#" class="btn-product btn-cart col-2 bg-primary text-white "
                                                 style="margin-left: 10px;"><span class="text-white">cart</span></a>
                                         </div>
 
@@ -133,9 +151,8 @@
                                         <div class="product-details-footer">
                                             <div class="product-cat">
                                                 <span>Category:</span>
-                                                <a href="#">Women</a>,
-                                                <a href="#">Dresses</a>,
-                                                <a href="#">Yellow</a>
+                                                <a href="#" id="categoryName">Women</a>,
+
                                             </div><!-- End .product-cat -->
 
                                             <div class="social-icons social-icons-sm">
@@ -159,7 +176,7 @@
                                                         <a class="collapsed" role="button" data-toggle="collapse"
                                                             href="#product-accordion-desc" aria-expanded="false"
                                                             aria-controls="product-accordion-desc">
-                                                            Description
+                                                            Author Description
                                                         </a>
                                                     </h2>
                                                 </div><!-- End .card-header -->
@@ -168,13 +185,15 @@
                                                     data-parent="#product-accordion">
                                                     <div class="card-body">
                                                         <div class="product-desc-content">
-                                                            <p id="product-description">Lorem ipsum dolor sit amet, consectetuer adipiscing
+                                          
+                                                            <p id="author-description">Lorem ipsum dolor sit amet,
+                                                                consectetuer adipiscing
                                                                 elit. Donec odio. Quisque volutpat mattis eros.
                                                                 Nullam malesuada erat ut turpis. Suspendisse urna
                                                                 viverra non, semper suscipit, posuere a, pede. Donec
                                                                 nec justo eget felis facilisis fermentum. Aliquam
                                                                 porttitor mauris sit amet orci.</p>
-                                                           
+
 
 
                                                         </div><!-- End .product-desc-content -->
@@ -214,8 +233,7 @@
                                                                 <li>Professional dry clean only</li>
                                                             </ul>
 
-                                                            <h3>Size</h3>
-                                                            <p>S, M, L, XL</p>
+                                                          
                                                         </div><!-- End .product-desc-content -->
                                                     </div><!-- End .card-body -->
                                                 </div><!-- End .collapse -->
@@ -276,91 +294,38 @@
 
                             </div><!-- End .header-flex -->
 
-                            <div class="owl-carousel carousel-equal-height owl-simple" data-toggle="owl"
-                                data-owl-options='{
-                                     "nav": false, 
-                                     "dots": true,
-                                     "margin": 20,
-                                     "loop": false,
-                                     "responsive": {
-                                     "0": {
-                                     "items":2
-                                     },
-                                     "480": {
-                                     "items":2
-                                     },
-                                     "768": {
-                                     "items":3
-                                     },
-                                     "992": {
-                                     "items":4
-                                     },
-                                     "1440": {
-                                     "items":5
-                                     }
-                                     }
-                                     }'>
-                                <div class="product">
+                            <div id="similar-product-main" class="row">
+                                <div class="product col-3" id="similer-product">
 
                                     <figure class="product-media">
-                                        <a href="product.html">
+                                        <a href="product.html" id="similar-product-a1">
                                             <img src="assets/images/demos/demo-20/products/product-1.jpg"
-                                                alt="Product image" class="product-image">
+                                                alt="Product image" class="product-image" id="similer-product-image">
                                         </a>
                                     </figure><!-- End .product-media -->
 
                                     <div class="product-body">
                                         <div class="product-cat">
-                                            by <a href="#">Michelle Obama</a>
+                                            by <a href="#" id="similar-author">Michelle Obama</a>
                                         </div><!-- End .product-cat -->
-                                        <h3 class="product-title"><a href="product.html">Becoming</a></h3>
+                                        <h3 class="product-title"><a href="product.html" id="similar-product-a2" ><span id="similar-title">Becoming</span></a></h3>
                                         <!-- End .product-title -->
                                         <div class="product-price">
-                                            <span class="new-price">$19.50</span>
-                                            <span class="old-price">Was $32.50</span>
+                                            <span class="new-price" id="similar-price">$19.50</span>
+                                         
                                         </div><!-- End .product-price -->
 
                                         <div class="product-footer">
 
                                             <div class="product-action">
-                                                <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                                                <a href="#" class="btn-product btn-wishlist"><span>Add to
-                                                        Wishlist</span></a>
+                                                <a href="#" class="btn-product btn-cart" id="similar-add-to-cart"><span>add to cart</span></a>
+                                        
                                             </div><!-- End .product-action -->
                                         </div><!-- End .product-footer -->
                                     </div><!-- End .product-body -->
                                 </div><!-- End .product -->
 
-                                <div class="product">
-
-                                    <figure class="product-media">
-                                        <a href="product.html">
-                                            <img src="assets/images/demos/demo-20/products/product-1.jpg"
-                                                alt="Product image" class="product-image">
-                                        </a>
-                                    </figure><!-- End .product-media -->
-
-                                    <div class="product-body">
-                                        <div class="product-cat">
-                                            by <a href="#">Michelle Obama</a>
-                                        </div><!-- End .product-cat -->
-                                        <h3 class="product-title"><a href="product.html">Becoming</a></h3>
-                                        <!-- End .product-title -->
-                                        <div class="product-price">
-                                            <span class="new-price">$19.50</span>
-                                            <span class="old-price">Was $32.50</span>
-                                        </div><!-- End .product-price -->
-
-                                        <div class="product-footer">
-
-                                            <div class="product-action">
-                                                <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                                                <a href="#" class="btn-product btn-wishlist"><span>Add to
-                                                        Wishlist</span></a>
-                                            </div><!-- End .product-action -->
-                                        </div><!-- End .product-footer -->
-                                    </div><!-- End .product-body -->
-                                </div><!-- End .product -->
+                               
 
 
 
@@ -392,6 +357,9 @@
     <script src="assets/js/jquery.magnific-popup.min.js"></script>
     <!-- Main JS File -->
     <script src="assets/js/main.js"></script>
+
+    <script src="assets/requestJS/loadSingleProduct.js"></script>
+
 </body>
 
 

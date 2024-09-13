@@ -39,7 +39,7 @@ public class LoadSingleProduct extends HttpServlet {
 
                 Criteria criteria2 = session.createCriteria(Product.class);
                 criteria2.add(Restrictions.eq("category", product.getCategory()));
-                criteria2.setMaxResults(4); //SQL LIMT
+                criteria2.setMaxResults(4); 
 
                 List<Product> productList = criteria2.list();
                 for (Product product1 : productList) {
