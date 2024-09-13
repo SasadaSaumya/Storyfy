@@ -3,13 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/sasad/Documents/My%20Projects/Web/Java%20EE/Storyfy/src/java/hibernate.cfg.xml</file>
-            <file>file:/C:/Users/sasad/Documents/My%20Projects/Web/Java%20EE/Storyfy/src/java/controller/AddProduct.java</file>
-            <file>file:/C:/Users/sasad/Documents/My%20Projects/Web/Java%20EE/Storyfy/src/java/controller/LoadSingleProduct.java</file>
-            <file>file:/C:/Users/sasad/Documents/My%20Projects/Web/Java%20EE/Storyfy/web/assets/requestJS/loadSingleProduct.js</file>
-            <file>file:/C:/Users/sasad/Documents/My%20Projects/Web/Java%20EE/Storyfy/web/assets/requestJS/myAccount.js</file>
-            <file>file:/C:/Users/sasad/Documents/My%20Projects/Web/Java%20EE/Storyfy/src/java/entity/Product.java</file>
-            <file>file:/C:/Users/sasad/Documents/My%20Projects/Web/Java%20EE/Storyfy/src/java/model/Validations.java</file>
+            <file>file:/C:/Users/sasad/Documents/My%20Projects/Web/Java%20EE/Storyfy/src/java/controller/LoadAllProducts.java</file>
+            <file>file:/C:/Users/sasad/Documents/My%20Projects/Web/Java%20EE/Storyfy/web/assets/requestJS/productSearch.js</file>
+            <file>file:/C:/Users/sasad/Documents/My%20Projects/Web/Java%20EE/Storyfy/src/java/controller/SearchProducts.java</file>
         </group>
     </open-files>
 </project-private>

@@ -37,7 +37,8 @@
 
     <!-- js -->
     <script src="https://code.jquery.com/jquery-3.3.1.js"
-        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"> </script>
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+        </script>
     <script>
         $(function () {
             $("#header").load("header.html");
@@ -87,14 +88,14 @@
                             </div><!-- End .toolbox -->
 
                             <div class="products mb-3">
-                                <div class="row justify-content-center">
+                                <div class="row justify-content-center" id="product-container">
                                     <!-- product -->
-                                    <div class="col-6 col-md-4 col-lg-4">
+                                    <div class="col-6 col-md-4 col-lg-4" id="product-card">
                                         <div class="product product-7 text-center">
                                             <figure class="product-media">
-                                                <a href="product.html">
+                                                <a href="product.html" id="product-image-href">
                                                     <img src="assets/images/demos/demo-20/products/product-1.jpg"
-                                                        alt="Product image" class="product-image">
+                                                        alt="Product image" class="product-image" id="product-image">
                                                 </a>
 
                                                 <div class="product-action">
@@ -104,12 +105,11 @@
                                             </figure><!-- End .product-media -->
 
                                             <div class="product-body">
-                                                <div class="product-cat">
-                                                    <a href="#">Women</a>
-                                                </div><!-- End .product-cat -->
-                                                <h3 class="product-title"><a href="product.html">Brown paperbag waist
+
+                                                <h3 class="product-title"><a href="product.html"
+                                                        id="product-title-1">Brown paperbag waist
                                                         pencil skirt</a></h3><!-- End .product-title -->
-                                                <div class="product-price">
+                                                <div class="product-price" id="product-price">
                                                     $60.00
                                                 </div><!-- End .product-price -->
 
@@ -126,24 +126,11 @@
                             </div><!-- End .products -->
 
                             <nav aria-label="Page navigation">
-                                <ul class="pagination justify-content-center">
-                                    <li class="page-item disabled">
-                                        <a class="page-link page-link-prev" href="#" aria-label="Previous" tabindex="-1"
-                                            aria-disabled="true">
-                                            <span aria-hidden="true"><i class="icon-long-arrow-left"></i></span>Prev
-                                        </a>
-                                    </li>
-                                    <li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item-total">of 6</li>
-                                    <li class="page-item">
-                                        <a class="page-link page-link-next" href="#" aria-label="Next">
-                                            Next <span aria-hidden="true"><i class="icon-long-arrow-right"></i></span>
-                                        </a>
-                                    </li>
-                                </ul>
+                                <div class="text-center pt--20" id="pagination-container">
+                                    <a href="#" id="pagination-item" class="btn-danger  ml--10"
+                                        style="padding: 30px;">Prev</a>
+
+                                </div>
                             </nav>
                         </div><!-- End .col-lg-9 -->
                         <aside class="col-lg-3 order-lg-first">
@@ -165,10 +152,11 @@
                                         <div class="widget-body">
                                             <div class="filter-items filter-items-count" id="category-main">
                                                 <div class="col-12" id="category-sub">
-                                                    <input type="checkbox"  name="checkbox" id="checkbox-cate">&nbsp;<span id="category-text">Love</span>
+                                                    <input type="radio" name="radio-category"
+                                                        id="radio-cate">&nbsp;<span id="category-text">Love</span>
                                                 </div>
-                                          
-                                            </div><!-- End .filter-items -->
+                                            </div>
+
                                         </div><!-- End .widget-body -->
                                     </div><!-- End .collapse -->
                                 </div><!-- End .widget -->
@@ -185,14 +173,17 @@
                                         <div class="widget-body">
                                             <div class="filter-items" id="authors-main">
                                                 <div class="col-12" id="authors-sub">
-                                                    <input type="checkbox"  name="checkbox" id="checkbox-cate">&nbsp;<span id="authors-text">Love</span>
+
+                                                    <input type="radio" name="radio-category"
+                                                        id="radio-authors">&nbsp;<span id="authors-text">Love</span>
+
                                                 </div>
                                             </div><!-- End .filter-items -->
                                         </div><!-- End .widget-body -->
                                     </div><!-- End .collapse -->
                                 </div><!-- End .widget -->
 
-
+                                <button onclick="searchProduct(0);">dsfsdfsdf</button>
 
                                 <div class="widget widget-collapsible">
                                     <h3 class="widget-title">
@@ -206,7 +197,10 @@
                                         <div class="widget-body">
                                             <div class="filter-items" id="publisher-main">
                                                 <div class="col-12" id="publisher-sub">
-                                                    <input type="checkbox"  name="checkbox" id="checkbox-cate">&nbsp;<span id="publisher-text">Love</span>
+
+                                                    <input type="radio" name="radio-category"
+                                                        id="radio-publisher">&nbsp;<span id="publisher-text">Love</span>
+
                                                 </div>
 
                                             </div><!-- End .filter-items -->
@@ -222,18 +216,34 @@
                                         </a>
                                     </h3><!-- End .widget-title -->
 
-                                    <div class="collapse show" id="widget-5">
-                                        <div class="widget-body">
-                                            <div class="filter-price">
-                                                <div class="filter-price-text">
-                                                    Price Range:
-                                                    <span id="filter-price-range"></span>
-                                                </div><!-- End .filter-price-text -->
-
-                                                <div id="price-slider"></div><!-- End #price-slider -->
-                                            </div><!-- End .filter-price -->
-                                        </div><!-- End .widget-body -->
-                                    </div><!-- End .collapse -->
+                                    <div class="shop-submenu">
+                                        <div id="price-filter" class="iz-accordion-collapse collapse"
+                                            data-bs-parent="#accordionFlushFilterMenu">
+                                            <div class="iz-accordion-body">
+                                                <div class="price-input d-flex gap-3 pb-4">
+                                                    <div class="field ps-3">
+                                                        <span>Rs:</span>
+                                                        <input type="number" class="input-min" value="0">
+                                                    </div>
+                                                    <div class="field ps-3">
+                                                        <span>Rs:</span>
+                                                        <input type="number" class="input-max" value="50000">
+                                                    </div>
+                                                </div>
+                                                <div class="slider">
+                                                    <div class="progress"></div>
+                                                </div>
+                                                <div class="range-input">
+                                                    <input data-range="max" type="range"
+                                                        class="range-min shopFilterPrice" min="0" max="50000" value="0"
+                                                        step="100">
+                                                    <input data-range="min" type="range"
+                                                        class="range-max shopFilterPrice" min="0" max="50000"
+                                                        value="50000" step="100">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div><!-- End .widget -->
                             </div><!-- End .sidebar sidebar-shop -->
                         </aside><!-- End .col-lg-3 -->

@@ -190,6 +190,7 @@ $(document).ready(function () {
 			$('#filter-price-range').text(values.join(' - '));
 		});
 	}
+    
 
 	// Product countdown
 	if ( $.fn.countdown ) {
