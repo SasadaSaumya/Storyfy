@@ -31,8 +31,8 @@ async function loadData() {
             let currentAddressCheckbox = document.getElementById("checkbox1");
             currentAddressCheckbox.addEventListener("change", e => {
 
-                let first_name = document.getElementById("first-name");
-                let last_name = document.getElementById("last-name");
+                let first_name = document.getElementById("firname");
+                let last_name = document.getElementById("laname");
                 let city = document.getElementById("city");
                 let address1 = document.getElementById("address1");
                 let address2 = document.getElementById("address2");
@@ -68,38 +68,38 @@ async function loadData() {
 
             //load cart items
             //load cart items
-            let st_tbody = document.getElementById("st-tbody");
-            let st_item_tr = document.getElementById("st-item-tr");
-            let st_order_subtotal_tr = document.getElementById("st-order-subtotal-tr");
-            let st_order_shipping_tr = document.getElementById("st-order-shipping-tr");
-            let st_order_total_tr = document.getElementById("st-order-total-tr");
-            st_tbody.innerHTML = "";
+            let tbody = document.getElementById("tbody");
+            let item_tr = document.getElementById("item-tr");
+            let order_subtotal_tr = document.getElementById("order-subtotal-tr");
+            let order_shipping_tr = document.getElementById("order-shipping-tr");
+            let order_total_tr = document.getElementById("order-total-tr");
+            tbody.innerHTML = "";
 
             let sub_total = 0;
             cartList.forEach(item => {
 
-                let st_item_clone = st_item_tr.cloneNode(true);
-                st_item_clone.querySelector("#st-item-title").innerHTML = item.product.title;
-                st_item_clone.querySelector("#st-item-qty").innerHTML = item.qty;
+                let item_clone = item_tr.cloneNode(true);
+                item_clone.querySelector("#item-title").innerHTML = item.product.title;
+                item_clone.querySelector("#item-qty").innerHTML = item.qty;
 
                 let item_sub_total = item.product.price * item.qty;
                 sub_total += item_sub_total;
 
-                st_item_clone.querySelector("#st-item-subtotal").innerHTML = new Intl.NumberFormat(
+                item_clone.querySelector("#item-subtotal").innerHTML = new Intl.NumberFormat(
                         "en-US", {
                             minimumFractionDigits: 2
                         }
                 ).format(item_sub_total);
 
-                st_tbody.appendChild(st_item_clone);
+                tbody.appendChild(item_clone);
             });
-            st_order_subtotal_tr.querySelector("#st-subtotal").innerHTML = new Intl.NumberFormat(
+            order_subtotal_tr.querySelector("#subtotal").innerHTML = new Intl.NumberFormat(
                     "en-US",
                     {
                         minimumFractionDigits: 2
                     }
             ).format(sub_total);
-            st_tbody.appendChild(st_order_subtotal_tr);
+            tbody.appendChild(order_subtotal_tr);
 
             //update shipping charges
 
@@ -117,22 +117,22 @@ async function loadData() {
 
             }
 
-            st_order_shipping_tr.querySelector("#st-shipping-amount").innerHTML = new Intl.NumberFormat(
+            order_shipping_tr.querySelector("#shipping-amount").innerHTML = new Intl.NumberFormat(
                     "en-US",
                     {
                         minimumFractionDigits: 2
                     }
             ).format(shipping_amount);
-            st_tbody.appendChild(st_order_shipping_tr);
+            tbody.appendChild(order_shipping_tr);
             //update total
             let total = sub_total + shipping_amount;
-            st_order_total_tr.querySelector("#st-total").innerHTML = new Intl.NumberFormat(
+            order_total_tr.querySelector("#total").innerHTML = new Intl.NumberFormat(
                     "en-US",
                     {
                         minimumFractionDigits: 2
                     }
             ).format(total);
-            st_tbody.appendChild(st_order_total_tr);
+            tbody.appendChild(order_total_tr);
 
             //update total on city change
             citySelect.addEventListener("change", e => {
@@ -149,29 +149,29 @@ async function loadData() {
                     //Out of Çolombo
                     shipping_amount = item_count * 2500;
                 }
-                st_order_shipping_tr.querySelector("#st-shipping-amount").innerHTML = new Intl.NumberFormat(
+                order_shipping_tr.querySelector("#shipping-amount").innerHTML = new Intl.NumberFormat(
                         "en-US",
                         {
                             minimumFractionDigits: 2
                         }
                 ).format(shipping_amount);
-                st_tbody.appendChild(st_order_shipping_tr);
+                tbody.appendChild(order_shipping_tr);
 
                 //update total
                 let total = sub_total + shipping_amount;
-                st_order_total_tr.querySelector("#st-total").innerHTML = new Intl.NumberFormat(
+                order_total_tr.querySelector("#total").innerHTML = new Intl.NumberFormat(
                         "en-US",
                         {
 
                             minimumFractionDigits: 2
                         }
                 ).format(total);
-                st_tbody.appendChild(st_order_total_tr);
+                tbody.appendChild(order_total_tr);
 
             });
             city.dispatchEvent(new Event("change"));
         } else {
-            window.location = "sign-in.html";
+            window.location = "login.html";
         }
 
     }
@@ -184,8 +184,8 @@ async function checkout() {
     let isCurrentAddress = document.getElementById("checkbox1").checked;
 
     //get address data
-    let first_name = document.getElementById("first-name");
-    let last_name = document.getElementById("last-name");
+    let first_name = document.getElementById("first_name");
+    let last_name = document.getElementById("last_name");
     let city = document.getElementById("city");
     let address1 = document.getElementById("address1");
     let address2 = document.getElementById("address2");

@@ -28,6 +28,8 @@
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <!-- Main CSS File -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/notification.css">
+
 
     <!-- js -->
     <script src="https://code.jquery.com/jquery-3.3.1.js"
@@ -65,46 +67,46 @@
                                 <div class="col-lg-9 ">
                                     <h2 class="checkout-title">Billing Details</h2><!-- End .checkout-title -->
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="checkout-create-acc">
-                                        <label class="custom-control-label" for="checkout-create-acc">Same as your
+                                        <input type="checkbox" class="custom-control-input" id="checkbox1">
+                                        <label class="custom-control-label" for="checkbox1">Same as your
                                             current address?</label>
                                     </div><!-- End .custom-checkbox -->
 
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <label>First Name *</label>
-                                            <input type="text" class="form-control" required>
+                                            <input type="text" class="form-control" required id="first-name">
                                         </div><!-- End .col-sm-6 -->
 
                                         <div class="col-sm-6">
                                             <label>Last Name *</label>
-                                            <input type="text" class="form-control" required>
+                                            <input type="text" class="form-control" required id="last-name">
                                         </div><!-- End .col-sm-6 -->
                                     </div><!-- End .row -->
 
                                     <label>City *</label>
-                                    <select required class="form-control">
+                                    <select required class="form-control" id="city">
                                         <option value="">Select</option>
                                     </select>
 
                                     <label>Street address Line 1 *</label>
-                                    <input type="text" class="form-control" placeholder="House number and Street name"
+                                    <input type="text" class="form-control" id="address1" placeholder="House number and Street name"
                                         required>
 
 
                                     <label>Street address Line 2 *</label>
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" id="address2"
                                         placeholder="Appartments, suite, unit etc ..." required>
 
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <label>Postcode / ZIP *</label>
-                                            <input type="text" class="form-control" required>
+                                            <input type="text" id="postal-code" class="form-control" required>
                                         </div><!-- End .col-sm-6 -->
 
                                         <div class="col-sm-6">
                                             <label>Phone *</label>
-                                            <input type="tel" class="form-control" required>
+                                            <input type="tel" class="form-control" id="mobile" required>
                                         </div><!-- End .col-sm-6 -->
                                     </div><!-- End .row -->
 
@@ -121,27 +123,22 @@
                                                 </tr>
                                             </thead>
 
-                                            <tbody>
-                                                <tr>
-                                                    <td><a href="#">Beige knitted elastic runner shoes</a></td>
-                                                    <td>$84.00</td>
+                                            <tbody id="tbody">
+                                                <tr id="item-tr">
+                                                    <td><a href="#" id="item-title">Beige knitted elastic runner shoes x &nbsp;<span id="item-qty"> 10</span></a></td>
+                                                    <td id="item-subtotal">$84.00</td>
                                                 </tr>
-
-                                                <tr>
-                                                    <td><a href="#">Blue utility pinafore denimdress</a></td>
-                                                    <td>$76,00</td>
-                                                </tr>
-                                                <tr class="summary-subtotal">
+                                                <tr class="summary-subtotal" id="order-subtotal-tr">
                                                     <td>Subtotal:</td>
-                                                    <td>$160.00</td>
+                                                    <td id="subtotal">$160.00</td>
                                                 </tr><!-- End .summary-subtotal -->
-                                                <tr>
+                                                <tr id="order-shipping-tr">
                                                     <td>Shipping:</td>
-                                                    <td>Free shipping</td>
+                                                    <td id="shipping-amount">299</td>
                                                 </tr>
-                                                <tr class="summary-total">
+                                                <tr class="summary-total" id="order-total-tr">
                                                     <td>Total:</td>
-                                                    <td>$160.00</td>
+                                                    <td id="total">$160.00</td>
                                                 </tr><!-- End .summary-total -->
                                             </tbody>
                                         </table><!-- End .table table-summary -->
@@ -201,6 +198,11 @@
     <script src="assets/js/owl.carousel.min.js"></script>
     <!-- Main JS File -->
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/notification.js"></script>
+
+
+    <script src="assets/requestJS/checkout.js"></script>
+
 </body>
 
 
