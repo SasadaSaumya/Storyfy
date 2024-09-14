@@ -7,7 +7,6 @@ import entity.Category;
 import entity.Product;
 import entity.Publisher;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,112 +24,91 @@ public class SearchProducts extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         Gson gson = new Gson();
-
         JsonObject responseJsonObject = new JsonObject();
         responseJsonObject.addProperty("success", false);
 
-        //Get request json
+        // Get request JSON
         JsonObject requestJsonObject = gson.fromJson(request.getReader(), JsonObject.class);
         System.out.println(requestJsonObject);
         Session session = HibernateUtil.getSessionFactory().openSession();
+        
 
-        //search all products
-        Criteria criteria1 = session.createCriteria(Product.class);
+     
+            Criteria criteria1 = session.createCriteria(Product.class);
 
-        //add category filter 
-        if (requestJsonObject.has("categoryName")) {
-            //category selected
-            String categoryName = requestJsonObject.get("categoryName").getAsString();
+            // Add category filter
+            if (requestJsonObject.has("categoryName")) {
+                String categoryName = requestJsonObject.get("categoryName").getAsString();
+                Criteria criteria2 = session.createCriteria(Category.class);
+                criteria2.add(Restrictions.eq("name", categoryName));
+                Category category = (Category) criteria2.uniqueResult();
+                if (category != null) {
+                    criteria1.add(Restrictions.eq("category", category));
+                }
+            }
 
-            //get category list form db
-            Criteria criteria2 = session.createCriteria(Category.class);
-            criteria2.add(Restrictions.eq("name", categoryName));
-            Category category = (Category) criteria2.uniqueResult();
+            // Add author filter
+            if (requestJsonObject.has("authorName")) {
+                String authorName = requestJsonObject.get("authorName").getAsString();
+                Criteria criteria4 = session.createCriteria(Author.class);
+                criteria4.add(Restrictions.eq("name", authorName));
+                Author author = (Author) criteria4.uniqueResult();
+                if (author != null) {
+                    criteria1.add(Restrictions.eq("author", author));
+                }
+            }
 
-            //Filter product by model list from db
-            criteria1.add(Restrictions.eq("category", category));
-        }
+            // Add publisher filter
+            if (requestJsonObject.has("publisherName")) {
+                String publisherName = requestJsonObject.get("publisherName").getAsString();
+                Criteria criteria5 = session.createCriteria(Publisher.class);
+                criteria5.add(Restrictions.eq("name", publisherName));
+                Publisher publisher = (Publisher) criteria5.uniqueResult();
+                if (publisher != null) {
+                    criteria1.add(Restrictions.eq("publisher", publisher));
+                }
+            }
 
-        //add author filter 
-        if (requestJsonObject.has("authorName")) {
-            //author selected
-            String authorName = requestJsonObject.get("authorName").getAsString();
+            // Add price range filter
+            double priceRangeStart = requestJsonObject.has("priceRangeStart") ? requestJsonObject.get("priceRangeStart").getAsDouble() : 0;
+            double priceRangeEnd = requestJsonObject.has("priceRangeEnd") ? requestJsonObject.get("priceRangeEnd").getAsDouble() : Double.MAX_VALUE;
+            criteria1.add(Restrictions.ge("price", priceRangeStart));
+            criteria1.add(Restrictions.le("price", priceRangeEnd));
 
-            //get author form db
-            Criteria criteria4 = session.createCriteria(Author.class);
-            criteria4.add(Restrictions.eq("name", authorName));
-            Author author = (Author) criteria4.uniqueResult();
+            // Add sorting
+            String sortText = requestJsonObject.get("sortText").getAsString();
+            if ("Sort by Latest".equals(sortText)) {
+                criteria1.addOrder(Order.desc("id"));
+            } else if ("Sort by Oldest".equals(sortText)) {
+                criteria1.addOrder(Order.asc("id"));
+            } else if ("Sort by Name".equals(sortText)) {
+                criteria1.addOrder(Order.asc("title"));
+            } else if ("Sort by Price".equals(sortText)) {
+                criteria1.addOrder(Order.asc("price"));
+            }
 
-            //Filter product by author from db
-            criteria1.add(Restrictions.eq("author", author));
-        }
+            // Get all product count
+            responseJsonObject.addProperty("allProductCount", criteria1.list().size());
 
-        if (requestJsonObject.has("publisherName")) {
-            //publisher selected
-            String publisherName = requestJsonObject.get("publisherName").getAsString();
+            // Set product range
+            int firstResult = requestJsonObject.get("firstResult").getAsInt();
+            criteria1.setFirstResult(firstResult);
+            criteria1.setMaxResults(6);
 
-            //get publisher form db
-            Criteria criteria5 = session.createCriteria(Publisher.class);
-            criteria5.add(Restrictions.eq("name", publisherName));
-            Publisher publisher = (Publisher) criteria5.uniqueResult();
+            // Get product list
+            List<Product> productList = criteria1.list();
 
-            //Filter product by publisher from db
-            criteria1.add(Restrictions.eq("publisher", publisher));
-        }
+            // Remove user from product
+            productList.forEach(product -> product.setUser(null));
 
-        double priceRangeStart = requestJsonObject.get("priceRangeStart").getAsDouble();
-        double priceRangeEnd = requestJsonObject.get("priceRangeEnd").getAsDouble();
+            responseJsonObject.addProperty("success", true);
+            responseJsonObject.add("productList", gson.toJsonTree(productList));
 
-        criteria1.add(Restrictions.ge("price", priceRangeStart));
-        criteria1.add(Restrictions.le("price", priceRangeEnd));
-
-        String sortText = requestJsonObject.get("sortText").getAsString();
-
-        if (sortText.equals("Sort by Latest")) {
-
-            criteria1.addOrder(Order.desc("id"));
-
-        } else if (sortText.equals("Sort by Oldest")) {
-
-            criteria1.addOrder(Order.asc("id"));
-
-        } else if (sortText.equals("Sort by Name")) {
-
-            criteria1.addOrder(Order.asc("title"));
-
-        } else if (sortText.equals("Sort by Price")) {
-
-            criteria1.addOrder(Order.asc("price"));
-
-        }
-
-        //get all product count
-        responseJsonObject.addProperty("allProductCount", criteria1.list().size());
-
-        //set product range
-        int firstResult = requestJsonObject.get("firstResult").getAsInt();
-
-        criteria1.setFirstResult(firstResult);
-        criteria1.setMaxResults(6);
-
-        //get product list
-        List<Product> productList = criteria1.list();
-
-        // remove user from product
-        for (Product product : productList) {
-            product.setUser(null);
-        }
-
-        responseJsonObject.addProperty("success", true);
-        responseJsonObject.add("productList", gson.toJsonTree(productList));
-
-        //send response
-        response.setContentType("application/json");
-        response.getWriter().write(gson.toJson(responseJsonObject));
-        System.out.println(gson.toJson(responseJsonObject));
-
+            // Send response
+            response.setContentType("application/json");
+            response.getWriter().write(gson.toJson(responseJsonObject));
+            System.out.println(gson.toJson(responseJsonObject));
+      
     }
-
 }

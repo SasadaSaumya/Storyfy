@@ -24,7 +24,6 @@ import org.hibernate.criterion.Restrictions;
  *
  * @author sasa
  */
-
 @WebServlet(name = "SignUp", urlPatterns = {"/SignUp"})
 public class SignUp extends HttpServlet {
 
@@ -58,7 +57,11 @@ public class SignUp extends HttpServlet {
 
         } else if (!Validations.isPasswordValid(user_DTO.getPassword())) {
 
-            response_DTO.setContent("Please enter valid password");
+            response_DTO.setContent("Password must include at least one uppercase letter, \"\n"
+                    + "                    + \"lowercase letter, \"\n"
+                    + "                    + \"number, \"\n"
+                    + "                    + \"special character, \"\n"
+                    + "                    + \"minimum 8 characters");
 
         } else {
 
@@ -96,7 +99,7 @@ public class SignUp extends HttpServlet {
                     }
 
                 };
-                
+
                 sendMailThread.start();
                 session.save(user);
                 session.beginTransaction().commit();
