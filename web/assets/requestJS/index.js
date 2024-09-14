@@ -7,9 +7,14 @@ const loadProduct = async () => {
 
         const json = await response.json();
 
+        console.log(json);
+
         loadProductCards(json.productList, "similar");
 
         loadProductCards(json.productListDate, "dateP");
+
+        loadProductCards(json.productListThriller, "Thriller");
+
 
 
 

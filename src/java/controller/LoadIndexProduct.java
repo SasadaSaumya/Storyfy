@@ -32,6 +32,7 @@ public class LoadIndexProduct extends HttpServlet {
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
 
+            //Fantasy
             Criteria criteria1 = session.createCriteria(Category.class);
             criteria1.add(Restrictions.eq("name", "Fantasy"));
             Category category = (Category) criteria1.uniqueResult();
@@ -50,7 +51,7 @@ public class LoadIndexProduct extends HttpServlet {
             // new products 
             Criteria criteria3 = session.createCriteria(Product.class);
             criteria3.addOrder(Order.desc("date_time"));
-            criteria3.setMaxResults(7);
+            criteria3.setMaxResults(3);
 
             List<Product> productListDate = criteria3.list();
             for (Product product1 : productListDate) {
@@ -59,9 +60,26 @@ public class LoadIndexProduct extends HttpServlet {
                 product1.getUser().setEmail(null);
             }
 
+            //Thriller
+            Criteria criteria4 = session.createCriteria(Category.class);
+            criteria4.add(Restrictions.eq("name", "Thriller"));
+            Category category2 = (Category) criteria4.uniqueResult();
+
+            Criteria criteria5 = session.createCriteria(Product.class);
+            criteria5.add(Restrictions.eq("category", category2));
+            criteria5.setMaxResults(7);
+
+            List<Product> productListThriller = criteria5.list();
+            for (Product product1 : productListThriller) {
+                product1.getUser().setPassword(null);
+                product1.getUser().setVerification(null);
+                product1.getUser().setEmail(null);
+            }
+
             JsonObject jsonObject = new JsonObject();
             jsonObject.add("productList", gson.toJsonTree(productList));
             jsonObject.add("productListDate", gson.toJsonTree(productListDate));
+            jsonObject.add("productListThriller", gson.toJsonTree(productListThriller));
 
             response.setContentType("application/json");
             response.getWriter().write(gson.toJson(jsonObject));
