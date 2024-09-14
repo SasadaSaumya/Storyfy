@@ -7,43 +7,9 @@ const loadProduct = async () => {
 
         const json = await response.json();
 
+        loadProductCards(json.productList, "similar");
 
-        let productHtml = document.getElementById("similer-product");
-        document.getElementById("similar-product-main").innerHTML = "";
-
-        json.productList.forEach(item => {
-
-            let productClone = productHtml.cloneNode(true);
-
-            productClone.querySelector("#similer-product-image").src = "product-images/" + item.id + "/image1.png";
-
-            productClone.querySelector("#similar-product-a1").href = "product.html?id=" + item.id;
-            productClone.querySelector("#similar-product-a2").href = "product.html?id=" + item.id;
-
-            productClone.querySelector("#similar-title").innerHTML = item.title;
-            productClone.querySelector("#similar-author").innerHTML = item.author.name;
-
-            productClone.querySelector("#similar-price").innerHTML = new Intl.NumberFormat(
-                "en-US",
-                {
-                    minimumFractionDigits: 2
-                }
-            ).format(item.price);
-
-            productClone.querySelector("#similar-add-to-cart").addEventListener(
-                "click",
-                (e) => {
-                    addToCart(item.id, 1);
-                    e.preventDefault();
-                });
-
-
-            console.log(productClone);
-
-            const similarProductMain = document.getElementById("similar-product-main");
-            similarProductMain.appendChild(productClone);
-
-        });
+        loadProductCards(json.productListDate, "dateP");
 
 
 
@@ -53,6 +19,46 @@ const loadProduct = async () => {
 
 
 
+
+};
+
+const loadProductCards = (dataList, prefix) => {
+    let productHtml = document.getElementById(prefix + "-product");
+    document.getElementById(prefix + "-product-main").innerHTML = "";
+
+    dataList.forEach(item => {
+
+        let productClone = productHtml.cloneNode(true);
+
+        productClone.querySelector("#" + prefix + "-product-image").src = "product-images/" + item.id + "/image1.png";
+
+        productClone.querySelector("#" + prefix + "-product-a1").href = "product.html?id=" + item.id;
+        productClone.querySelector("#" + prefix + "-product-a2").href = "product.html?id=" + item.id;
+
+        productClone.querySelector("#" + prefix + "-title").innerHTML = item.title;
+        productClone.querySelector("#" + prefix + "-author").innerHTML = item.author.name;
+
+        productClone.querySelector("#" + prefix + "-price").innerHTML = new Intl.NumberFormat(
+            "en-US",
+            {
+                minimumFractionDigits: 2
+            }
+        ).format(item.price);
+
+        productClone.querySelector("#" + prefix + "-add-to-cart").addEventListener(
+            "click",
+            (e) => {
+                addToCart(item.id, 1);
+                e.preventDefault();
+            });
+
+
+        console.log(productClone);
+
+        const similarProductMain = document.getElementById(prefix + "-product-main");
+        similarProductMain.appendChild(productClone);
+
+    });
 
 };
 

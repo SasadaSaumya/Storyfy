@@ -16,6 +16,7 @@ import model.HibernateUtil;
 import model.Validations;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -46,8 +47,21 @@ public class LoadIndexProduct extends HttpServlet {
                 product1.getUser().setEmail(null);
             }
 
+            // new products 
+            Criteria criteria3 = session.createCriteria(Product.class);
+            criteria3.addOrder(Order.desc("date_time"));
+            criteria3.setMaxResults(7);
+
+            List<Product> productListDate = criteria3.list();
+            for (Product product1 : productListDate) {
+                product1.getUser().setPassword(null);
+                product1.getUser().setVerification(null);
+                product1.getUser().setEmail(null);
+            }
+
             JsonObject jsonObject = new JsonObject();
             jsonObject.add("productList", gson.toJsonTree(productList));
+            jsonObject.add("productListDate", gson.toJsonTree(productListDate));
 
             response.setContentType("application/json");
             response.getWriter().write(gson.toJson(jsonObject));
