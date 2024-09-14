@@ -42,7 +42,7 @@
     </script>
 </head>
 
-<body onload="LoadUserHeaderFeatures();">
+<body onload="LoadUserHeaderFeatures(); loadProduct();" >
     <div class="page-wrapper">
 
         <div id="header"></div>
@@ -184,7 +184,7 @@
                         <div class="container">
                             <div class="heading heading-flex">
                                 <div class="heading-left">
-                                    <h2 class="title">Bestsellers</h2><!-- End .title -->
+                                    <h2 class="title">Fantasy</h2><!-- End .title -->
                                 </div><!-- End .heading-left -->
 
                                 <div class="heading-right">
@@ -192,95 +192,43 @@
                                             class="icon-long-arrow-right"></i></a>
                                 </div><!-- End .heading-right -->
                             </div><!-- End .header-flex -->
+                            <div id="similar-product-main"  class="row">
+                                <div class="product col-2" style="margin: 5px;" id="similer-product">
 
-                            <div class="owl-carousel carousel-equal-height owl-simple" data-toggle="owl"
-                                data-owl-options='{
-                                     "nav": false, 
-                                     "dots": true,
-                                     "margin": 20,
-                                     "loop": false,
-                                     "responsive": {
-                                     "0": {
-                                     "items":2
-                                     },
-                                     "480": {
-                                     "items":2
-                                     },
-                                     "768": {
-                                     "items":3
-                                     },
-                                     "992": {
-                                     "items":4
-                                     },
-                                     "1440": {
-                                     "items":5
-                                     }
-                                     }
-                                     }'>
-                                <div class="product">
-                                    
                                     <figure class="product-media">
-                                        <a href="product.html">
+                                        <a href="product.html" id="similar-product-a1">
                                             <img src="assets/images/demos/demo-20/products/product-1.jpg"
-                                                alt="Product image" class="product-image">
+                                                alt="Product image" class="product-image" id="similer-product-image">
                                         </a>
                                     </figure><!-- End .product-media -->
 
                                     <div class="product-body">
                                         <div class="product-cat">
-                                            by <a href="#">Michelle Obama</a>
+                                            by <a href="#" id="similar-author">Michelle Obama</a>
                                         </div><!-- End .product-cat -->
-                                        <h3 class="product-title"><a href="product.html">Becoming</a></h3>
+                                        <h3 class="product-title"><a href="product.html" id="similar-product-a2"><span
+                                                    id="similar-title">Becoming</span></a></h3>
                                         <!-- End .product-title -->
                                         <div class="product-price">
-                                            <span class="new-price">$19.50</span>
-                                            <span class="old-price">Was $32.50</span>
+                                            <span class="new-price" id="similar-price">$19.50</span>
+
                                         </div><!-- End .product-price -->
 
                                         <div class="product-footer">
-                                           
+
                                             <div class="product-action">
-                                                <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                                                <a href="#" class="btn-product btn-wishlist"><span>Add to
-                                                        Wishlist</span></a>
+                                                <a href="#" class="btn-product btn-cart"
+                                                    id="similar-add-to-cart"><span>add to cart</span></a>
+
                                             </div><!-- End .product-action -->
                                         </div><!-- End .product-footer -->
                                     </div><!-- End .product-body -->
                                 </div><!-- End .product -->
-                                
-                                <div class="product">
-                                    
-                                    <figure class="product-media">
-                                        <a href="product.html">
-                                            <img src="assets/images/demos/demo-20/products/product-1.jpg"
-                                                alt="Product image" class="product-image">
-                                        </a>
-                                    </figure><!-- End .product-media -->
 
-                                    <div class="product-body">
-                                        <div class="product-cat">
-                                            by <a href="#">Michelle Obama</a>
-                                        </div><!-- End .product-cat -->
-                                        <h3 class="product-title"><a href="product.html">Becoming</a></h3>
-                                        <!-- End .product-title -->
-                                        <div class="product-price">
-                                            <span class="new-price">$19.50</span>
-                                            <span class="old-price">Was $32.50</span>
-                                        </div><!-- End .product-price -->
 
-                                        <div class="product-footer">
-                                           
-                                            <div class="product-action">
-                                                <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                                                <a href="#" class="btn-product btn-wishlist"><span>Add to
-                                                        Wishlist</span></a>
-                                            </div><!-- End .product-action -->
-                                        </div><!-- End .product-footer -->
-                                    </div><!-- End .product-body -->
-                                </div><!-- End .product -->
-                                
 
-                              
+
+
                             </div><!-- End .owl-carousel -->
                         </div><!-- End .container -->
                     </div><!-- End .block-wrapper -->
@@ -1066,7 +1014,9 @@
     <script src="assets/js/demos/demo-20.js"></script>
 
     <script src="assets/requestJS/header.js"></script>
-    
+    <script src="assets/requestJS/index.js"></script>
+
+
 </body>
 
 
