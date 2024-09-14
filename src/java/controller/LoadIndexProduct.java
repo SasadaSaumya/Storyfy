@@ -37,7 +37,7 @@ public class LoadIndexProduct extends HttpServlet {
 
             Criteria criteria2 = session.createCriteria(Product.class);
             criteria2.add(Restrictions.eq("category", category));
-            criteria2.setMaxResults(4);
+            criteria2.setMaxResults(7);
 
             List<Product> productList = criteria2.list();
             for (Product product1 : productList) {
