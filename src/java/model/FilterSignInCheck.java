@@ -11,7 +11,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebFilter(urlPatterns = {"/account.html"})
+@WebFilter(urlPatterns = {"/account.html", "/checkout.html"})
 public class FilterSignInCheck implements Filter {
 
     @Override
