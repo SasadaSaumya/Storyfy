@@ -194,9 +194,9 @@ public class AddProduct extends HttpServlet {
                             session.beginTransaction().commit();
 
                             String applicationPath = request.getServletContext().getRealPath("");
-                            String newApplicationPath = applicationPath.replace("build" + File.separator + "web", "web");
+//                            String newApplicationPath = applicationPath.replace("build" + File.separator + "web", "web");
 
-                            File folder = new File(newApplicationPath + "//product-images//" + pid);
+                            File folder = new File(applicationPath + "//product-images//" + pid);
                             if (!folder.exists()) {
                                 folder.mkdirs();
                             }
