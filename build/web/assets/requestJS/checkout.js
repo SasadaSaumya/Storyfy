@@ -28,7 +28,7 @@ payhere.onError = function onError(error) {
 };
 
 async function loadData() {
-    // const popup = Notification();
+    const popup = Notification();
 
     const response = await fetch(
         "LoadCheckout"
@@ -186,7 +186,18 @@ async function loadData() {
 
             });
         } else {
-            window.location = "login.html";
+       
+
+             popup.error({
+                title: 'Error',
+                message: "Please Log In First"
+            });
+
+
+            setTimeout(() => {
+                window.location = "login.html";
+
+            }, 2000);
         }
 
     }

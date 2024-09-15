@@ -72,3 +72,12 @@ async function IsSignIn() {
     }
 
 }
+
+// test 
+const headerCategorySelect = async (element) => {
+
+    console.log("Header selected category " + element.innerHTML);
+
+
+
+}
