@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package controller;
 
 import com.google.gson.Gson;
@@ -73,20 +69,18 @@ public class LoadCheckout extends HttpServlet {
 
             } else {
 
-                //pack address in json object
+                // address in json object
                 address.setUser(null);
                 jsonObject.add("address", gson.toJsonTree(address));
 
-                //pack cities in json object
+                // cities in json object
                 jsonObject.add("cityList", gson.toJsonTree(cityList));
 
-                //pack cart items in json object
+                // cart items in json object
                 for (Cart cart : cartList) {
                     cart.setUser(null);
                     cart.getProduct().setUser(null);
                 }
-
-                jsonObject.add("cartList", gson.toJsonTree(cartList));
 
                 jsonObject.add("cartList", gson.toJsonTree(cartList));
 
