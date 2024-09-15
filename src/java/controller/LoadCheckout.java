@@ -42,58 +42,65 @@ public class LoadCheckout extends HttpServlet {
 
             User_DTO user_DTO = (User_DTO) httpSession.getAttribute("user");
 
-            //get user from db
+            // Get user from db
             Criteria criteria1 = session.createCriteria(User.class);
             criteria1.add(Restrictions.eq("email", user_DTO.getEmail()));
             User user = (User) criteria1.uniqueResult();
 
-            //get user's last address from db
-            Criteria criteria2 = session.createCriteria(Address.class);
-            criteria2.add(Restrictions.eq("user", user));
-            criteria2.addOrder(Order.desc("id"));
-            criteria2.setMaxResults(1);
-            Address address = (Address) criteria2.list().get(0);
+            if (user != null) {
+                // Get user's last address from db
+                Criteria criteria2 = session.createCriteria(Address.class);
+                criteria2.add(Restrictions.eq("user", user));
+                criteria2.addOrder(Order.desc("id"));
+                criteria2.setMaxResults(1);
 
-            //get cities from db
-            Criteria criteria3 = session.createCriteria(City.class);
-            criteria3.addOrder(Order.asc("name"));
-            List<City> cityList = criteria3.list();
+                List<Address> addressList = criteria2.list();
+                Address address = addressList.isEmpty() ? null : addressList.get(0);
 
-            //get cart items from db
-            Criteria criteria4 = session.createCriteria(Cart.class);
-            criteria4.add(Restrictions.eq("user", user));
-            List<Cart> cartList = criteria4.list();
+                // Get cities from db
+                Criteria criteria3 = session.createCriteria(City.class);
+                criteria3.addOrder(Order.asc("name"));
+                List<City> cityList = criteria3.list();
 
-            if (cartList.isEmpty()) {
-                jsonObject.addProperty("message", "Please product add to cart. your cart is empty");
+                // Get cart items from db
+                Criteria criteria4 = session.createCriteria(Cart.class);
+                criteria4.add(Restrictions.eq("user", user));
+                List<Cart> cartList = criteria4.list();
 
-            } else {
+                if (cartList.isEmpty()) {
+                    jsonObject.addProperty("message", "Please add products to your cart. Your cart is empty.");
+                } else {
+                    if (address != null) {
+                        // Address in JSON object
+                        address.setUser(null);  
+                        jsonObject.add("address", gson.toJsonTree(address));
+                    } else {
+                        jsonObject.addProperty("message", "No address found.");
+                    }
 
-                // address in json object
-                address.setUser(null);
-                jsonObject.add("address", gson.toJsonTree(address));
+                    // Cities in JSON object
+                    jsonObject.add("cityList", gson.toJsonTree(cityList));
 
-                // cities in json object
-                jsonObject.add("cityList", gson.toJsonTree(cityList));
+                    // Cart items in JSON object
+                    for (Cart cart : cartList) {
+                        cart.setUser(null);  // Avoid circular reference
+                        cart.getProduct().setUser(null);
+                    }
 
-                // cart items in json object
-                for (Cart cart : cartList) {
-                    cart.setUser(null);
-                    cart.getProduct().setUser(null);
+                    jsonObject.add("cartList", gson.toJsonTree(cartList));
+
+                    jsonObject.addProperty("success", true);
                 }
-
-                jsonObject.add("cartList", gson.toJsonTree(cartList));
-
-                jsonObject.addProperty("success", true);
-
+            } else {
+                jsonObject.addProperty("message", "User not found.");
             }
 
         } else {
-            jsonObject.addProperty("message", "Not signed in");
+            jsonObject.addProperty("message", "Not signed in.");
         }
+        
         response.setContentType("application/json");
         response.getWriter().write(gson.toJson(jsonObject));
         session.close();
     }
-
 }

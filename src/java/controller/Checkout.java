@@ -232,7 +232,7 @@ public class Checkout extends HttpServlet {
                 }
 
                 //get item details
-                items += cartItem.getProduct().getTitle() + "x" + cartItem.getQty();
+                items += cartItem.getProduct().getTitle() + " x " + cartItem.getQty();
 
                 //get product
                 Product product = cartItem.getProduct();
@@ -327,9 +327,8 @@ public class Checkout extends HttpServlet {
                             + "</table>"
                             + "</div>"
                             + "<h3>Shipping Address</h3>"
-                            + "<p>" + address.getLine1() + "</p>"
-                            + // Dynamically insert user address
-                            "<p>Your Order ID: " + order_id + "</p>"
+                            + "<p>" + address.getLine1() + " " + address.getLine2() + " " + address.getPostal_code() + "</p>"
+                            + "<p>Your Order ID: " + order_id + "</p>"
                             + "<p>If you have any questions, feel free to <a href=\"mailto:support@storfy.com\">contact us</a>.</p>"
                             + "</div>"
                             + "<div class=\"footer\"><p>Thank you for shopping with us!</p></div>"
