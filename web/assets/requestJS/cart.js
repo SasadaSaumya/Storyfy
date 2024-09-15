@@ -37,7 +37,7 @@ const loadCartItem = async () => {
                 total += itemSubTotal;
 
                 let cartItemRowClone = cartItemRow.cloneNode(true);
-                cartItemRowClone.querySelector("#cart-item-a").href = "single-product.html?id=" + item.product.id;
+                cartItemRowClone.querySelector("#cart-item-a").href = "product.html?id=" + item.product.id;
                 cartItemRowClone.querySelector("#cart-item-img").src = "product-images/" + item.product.id + "/image1.png";
                 cartItemRowClone.querySelector("#cart-item-title").innerHTML = item.product.title;
                 cartItemRowClone.querySelector("#cart-item-price").innerHTML = new Intl.NumberFormat(
@@ -46,7 +46,7 @@ const loadCartItem = async () => {
                         minimumFractionDigits: 2
                     }
                 ).format(item.product.price);
-                cartItemRowClone.querySelector("#cart-item-qty").value = item.qty;
+                cartItemRowClone.querySelector("#cart-item-qty").innerHTML = item.qty;
                 cartItemRowClone.querySelector("#cart-item-subtotal").innerHTML = new Intl.NumberFormat(
                     "en-US",
                     {
