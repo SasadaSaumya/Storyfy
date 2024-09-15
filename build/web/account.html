@@ -65,7 +65,8 @@
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" id="tab-orders-link" data-toggle="tab" href="#tab-orders"
-                                            role="tab" aria-controls="tab-orders" aria-selected="false">Orders</a>
+                                            role="tab" aria-controls="tab-orders" aria-selected="false">User Products
+                                        </a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" id="tab-downloads-link" data-toggle="tab"
@@ -116,38 +117,34 @@
 
                                     <div class="tab-pane fade" id="tab-orders" role="tabpanel"
                                         aria-labelledby="tab-orders-link">
-                                        <h4>Order History</h4>
-                                        <div class="row">
-                                            <table class="table table-striped">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">#</th>
-                                                        <th scope="col">First</th>
-                                                        <th scope="col">Last</th>
-                                                        <th scope="col">Handle</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
-                                                        <td>@mdo</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">2</th>
-                                                        <td>Jacob</td>
-                                                        <td>Thornton</td>
-                                                        <td>@fat</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">3</th>
-                                                        <td>Larry</td>
-                                                        <td>the Bird</td>
-                                                        <td>@twitter</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                        <h4>User Products</h4>
+                                        <div>
+                                            <div class="row" id="userAdded-product-main">
+                                                <div class="product col-2" style="margin: 5px;" id="userAdded-product">
+
+                                                    <figure class="product-media">
+                                                        <a href="product.html" id="userAdded-product-a1">
+                                                            <img src="assets/images/demos/demo-20/products/product-1.jpg"
+                                                                alt="Product image" class="product-image"
+                                                                id="userAdded-product-image">
+                                                        </a>
+                                                    </figure><!-- End .product-media -->
+
+                                                    <div class="product-body">
+                                                        <div class="product-cat">
+                                                            by <a href="#" id="userAdded-author">Michelle Obama</a>
+                                                        </div><!-- End .product-cat -->
+                                                        <h3 class="product-title"><a href="product.html"
+                                                                id="userAdded-product-a2"><span
+                                                                    id="userAdded-title">Becoming</span></a></h3>
+                                                        <!-- End .product-title -->
+                                                        <div class="product-price">
+                                                            <span class="new-price" id="userAdded-price">$19.50</span>
+
+                                                        </div>
+                                                    </div><!-- End .product-body -->
+                                                </div><!-- End .product -->
+                                            </div>
                                         </div>
                                     </div><!-- .End .tab-pane -->
 
@@ -238,13 +235,15 @@
 
                                     <div class="tab-pane fade" id="tab-address" role="tabpanel"
                                         aria-labelledby="tab-address-link">
-                                   
+
+
 
                                         <div class="row" id="addressMainContainer">
                                             <div class="col-lg-4" id="addressMainBox">
                                                 <div class="card card-dashboard">
                                                     <div class="card-body">
-                                                        <h1 class="card-title" style="font-weight: bold;" id="adNum">1</h1>
+                                                        <h1 class="card-title" style="font-weight: bold;" id="adNum">1
+                                                        </h1>
                                                         <!-- End .card-title -->
 
                                                         <p id="addressName">Amaya </p>
