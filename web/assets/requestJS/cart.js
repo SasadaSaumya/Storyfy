@@ -46,7 +46,7 @@ const loadCartItem = async () => {
                         minimumFractionDigits: 2
                     }
                 ).format(item.product.price);
-                cartItemRowClone.querySelector("#cart-item-qty").innerHTML = item.qty;
+                cartItemRowClone.querySelector("#cart-item-qty").value = item.qty;
                 cartItemRowClone.querySelector("#cart-item-subtotal").innerHTML = new Intl.NumberFormat(
                     "en-US",
                     {

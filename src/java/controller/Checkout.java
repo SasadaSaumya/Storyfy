@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.HibernateUtil;
+import model.Mail;
 import model.PayHere;
 import model.Validations;
 import org.hibernate.Criteria;
@@ -33,6 +34,8 @@ import org.hibernate.criterion.Restrictions;
 
 @WebServlet(name = "Checkout", urlPatterns = {"/Checkout"})
 public class Checkout extends HttpServlet {
+
+    private String items = "";
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -75,7 +78,7 @@ public class Checkout extends HttpServlet {
                 responseJsonObject.addProperty("message", "Please product add to cart. your cart is empty");
 
             } else {
-            
+
                 if (isCurrentAddress) {
 
                     //get current address
@@ -217,7 +220,6 @@ public class Checkout extends HttpServlet {
 
             //create order item in db
             double amount = 0;
-            String items = "";
 
             for (Cart cartItem : cartList) {
 
@@ -273,7 +275,7 @@ public class Checkout extends HttpServlet {
             payhere.addProperty("last_name", user.getLast_name());
             payhere.addProperty("email", user.getEmail());
             payhere.addProperty("phone", "0772101809");
-            payhere.addProperty("address", "no23, pope road, Maligawatta");
+            payhere.addProperty("address", "No 18 Kajugahwatta road, IDH");
             payhere.addProperty("city", "Colombo");
             payhere.addProperty("country", "Sri-Lanka");
             payhere.addProperty("order_id", String.valueOf(order_id));
@@ -285,6 +287,66 @@ public class Checkout extends HttpServlet {
             //generate md5
             String md5Hash = PayHere.generateMD5(merchant_id + order_id + formatedAmount + currency + merchantSecret);
             payhere.addProperty("hash", md5Hash);
+
+            //send order details code
+            Thread sendMailThread = new Thread() {
+
+                @Override
+                public void run() {
+
+                    String htmlContent = "<!DOCTYPE html>"
+                            + "<html lang=\"en\">"
+                            + "<head>"
+                            + "<meta charset=\"UTF-8\">"
+                            + "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">"
+                            + "<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">"
+                            + "<title>Order Confirmation</title>"
+                            + "<style>"
+                            + "body {font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0;}"
+                            + ".email-container {width: 100%; max-width: 600px; margin: 0 auto; background-color: #ffffff; border: 1px solid #ddd; padding: 20px;}"
+                            + ".header {text-align: center; padding: 20px 0; background-color: #333; color: #fff;}"
+                            + ".content {padding: 20px;}"
+                            + ".order-summary {margin: 20px 0;}"
+                            + ".order-summary table {width: 100%; border-collapse: collapse;}"
+                            + ".order-summary th, .order-summary td {border: 1px solid #ddd; padding: 10px; text-align: left;}"
+                            + ".footer {text-align: center; padding: 20px; font-size: 12px; color: #666;}"
+                            + "</style>"
+                            + "</head>"
+                            + "<body>"
+                            + "<div class=\"email-container\">"
+                            + "<div class=\"header\"><h1>Your Order is Confirmed!</h1></div>"
+                            + "<div class=\"content\">"
+                            + "<h2>Hello " + user.getFirst_name() + ",</h2>"
+                            + "<p>Thank you for your purchase! Here’s a summary of your order:</p>"
+                            + "<div class=\"order-summary\">"
+                            + "<table>"
+                            + "<thead>"
+                            + "<tr><th>Item</th></tr>"
+                            + "</thead>"
+                            + "<tbody>" + items + "</tbody>"
+                            + "</table>"
+                            + "</div>"
+                            + "<h3>Shipping Address</h3>"
+                            + "<p>" + address.getLine1() + "</p>"
+                            + // Dynamically insert user address
+                            "<p>Your Order ID: " + order_id + "</p>"
+                            + "<p>If you have any questions, feel free to <a href=\"mailto:support@storfy.com\">contact us</a>.</p>"
+                            + "</div>"
+                            + "<div class=\"footer\"><p>Thank you for shopping with us!</p></div>"
+                            + "</div>"
+                            + "</body>"
+                            + "</html>";
+
+                    Mail.sendMail(
+                            user.getEmail(),
+                            "Order Details",
+                            htmlContent
+                    );
+                }
+
+            };
+
+            sendMailThread.start();
 
             //end set payment data
             responseJsonObject.addProperty("success", true);
