@@ -186,18 +186,31 @@ async function loadData() {
 
             });
         } else {
-       
 
-             popup.error({
-                title: 'Error',
-                message: "Please Log In First"
-            });
+            if (json.message == "Please product add to cart. your cart is empty") {
+                popup.error({
+                    title: 'Error',
+                    message: json.message
+                });
 
 
-            setTimeout(() => {
-                window.location = "login.html";
+                setTimeout(() => {
+                    window.location = "shop.html";
 
-            }, 2000);
+                }, 2000);
+            } else {
+                popup.error({
+                    title: 'Error',
+                    message: json.message
+                });
+
+
+                setTimeout(() => {
+                    window.location = "login.html";
+
+                }, 2000);
+
+            }
         }
 
     }

@@ -27,7 +27,7 @@ import org.hibernate.criterion.Restrictions;
 
 /**
  *
- * @author sachi
+ * @author sasa
  */
 @WebServlet(name = "LoadCheckout", urlPatterns = {"/LoadCheckout"})
 public class LoadCheckout extends HttpServlet {
@@ -68,23 +68,31 @@ public class LoadCheckout extends HttpServlet {
             criteria4.add(Restrictions.eq("user", user));
             List<Cart> cartList = criteria4.list();
 
-            //pack address in json object
-            address.setUser(null);
-            jsonObject.add("address", gson.toJsonTree(address));
+            if (cartList.isEmpty()) {
+                jsonObject.addProperty("message", "Please product add to cart. your cart is empty");
 
-            //pack cities in json object
-            jsonObject.add("cityList", gson.toJsonTree(cityList));
+            } else {
 
-            //pack cart items in json object
-            for (Cart cart : cartList) {
-                cart.setUser(null);
-                cart.getProduct().setUser(null);
+                //pack address in json object
+                address.setUser(null);
+                jsonObject.add("address", gson.toJsonTree(address));
+
+                //pack cities in json object
+                jsonObject.add("cityList", gson.toJsonTree(cityList));
+
+                //pack cart items in json object
+                for (Cart cart : cartList) {
+                    cart.setUser(null);
+                    cart.getProduct().setUser(null);
+                }
+
+                jsonObject.add("cartList", gson.toJsonTree(cartList));
+
+                jsonObject.add("cartList", gson.toJsonTree(cartList));
+
+                jsonObject.addProperty("success", true);
+
             }
-            jsonObject.add("cartList", gson.toJsonTree(cartList));
-
-            jsonObject.add("cartList", gson.toJsonTree(cartList));
-
-            jsonObject.addProperty("success", true);
 
         } else {
             jsonObject.addProperty("message", "Not signed in");

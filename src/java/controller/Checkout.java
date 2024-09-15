@@ -67,114 +67,123 @@ public class Checkout extends HttpServlet {
             criteria1.add(Restrictions.eq("email", user_DTO.getEmail()));
             User user = (User) criteria1.uniqueResult();
 
-            if (isCurrentAddress) {
-
-                //get current address
-                Criteria criteria2 = session.createCriteria(Address.class);
-                criteria2.add(Restrictions.eq("user", user));
-                criteria2.addOrder(Order.desc("id"));
-                criteria2.setMaxResults(1);
-
-                if (criteria2.list().isEmpty()) {
-
-                    //current address not found
-                    responseJsonObject.addProperty("message", "Current address not found. Please create a new address");
-
-                } else {
-
-                    //current address found
-                    //complete
-                    Address address = (Address) criteria2.list().get(0);
-
-                    //complete checkout process
-                    saveOrders(session, transaction, address, user, responseJsonObject);
-
-                }
+            //get cart items
+            Criteria criteria4 = session.createCriteria(Cart.class);
+            criteria4.add(Restrictions.eq("user", user));
+            List<Cart> cartListCheck = criteria4.list();
+            if (cartListCheck.isEmpty()) {
+                responseJsonObject.addProperty("message", "Please product add to cart. your cart is empty");
 
             } else {
+            
+                if (isCurrentAddress) {
 
-                //create new address
-                if (first_name.isBlank()) {
+                    //get current address
+                    Criteria criteria2 = session.createCriteria(Address.class);
+                    criteria2.add(Restrictions.eq("user", user));
+                    criteria2.addOrder(Order.desc("id"));
+                    criteria2.setMaxResults(1);
 
-                    responseJsonObject.addProperty("message", "Please fill first name");
+                    if (criteria2.list().isEmpty()) {
 
-                } else if (last_name.isBlank()) {
+                        //current address not found
+                        responseJsonObject.addProperty("message", "Current address not found. Please create a new address");
 
-                    responseJsonObject.addProperty("message", "Please fill last name");
+                    } else {
 
-                } else if (!Validations.isInteger(city_id)) {
+                        //current address found
+                        //complete
+                        Address address = (Address) criteria2.list().get(0);
 
-                    responseJsonObject.addProperty("message", "Invalid city");
+                        //complete checkout process
+                        saveOrders(session, transaction, address, user, responseJsonObject);
+
+                    }
 
                 } else {
 
-                    //check city from db
-                    Criteria criteria3 = session.createCriteria(City.class);
-                    criteria3.add(Restrictions.eq("id", Integer.parseInt(city_id)));
+                    //create new address
+                    if (first_name.isEmpty()) {
 
-                    if (criteria3.list().isEmpty()) {
+                        responseJsonObject.addProperty("message", "Please fill first name");
+
+                    } else if (last_name.isEmpty()) {
+
+                        responseJsonObject.addProperty("message", "Please fill last name");
+
+                    } else if (!Validations.isInteger(city_id)) {
 
                         responseJsonObject.addProperty("message", "Invalid city");
 
                     } else {
 
-                        //city found
-                        City city = (City) criteria3.list().get(0);
+                        //check city from db
+                        Criteria criteria3 = session.createCriteria(City.class);
+                        criteria3.add(Restrictions.eq("id", Integer.parseInt(city_id)));
 
-                        if (address1.isEmpty()) {
+                        if (criteria3.list().isEmpty()) {
 
-                            responseJsonObject.addProperty("message", "Please fill address line 1");
-
-                        } else if (address2.isEmpty()) {
-
-                            responseJsonObject.addProperty("message", "Please fill address line 2");
-
-                        } else if (postal_code.isEmpty()) {
-
-                            responseJsonObject.addProperty("message", "Please fill postal code");
-
-                        } else if (postal_code.length() != 5) {
-
-                            responseJsonObject.addProperty("message", "Invalid postal code");
-
-                        } else if (!Validations.isInteger(postal_code)) {
-
-                            responseJsonObject.addProperty("message", "Invalid postal code");
-
-                        } else if (mobile.isEmpty()) {
-
-                            responseJsonObject.addProperty("message", "Please fill mobile number");
-
-                        } else if (!Validations.isMobileNumber(mobile)) {
-
-                            responseJsonObject.addProperty("message", "Invalid mobile number");
+                            responseJsonObject.addProperty("message", "Invalid city");
 
                         } else {
 
-                            //create new address
-                            Address address = new Address();
-                            address.setCity(city);
-                            address.setFirst_name(first_name);
-                            address.setLast_name(last_name);
-                            address.setLine1(address1);
-                            address.setLine2(address2);
-                            address.setMobile(mobile);
-                            address.setPostal_code(postal_code);
-                            address.setUser(user);
+                            //city found
+                            City city = (City) criteria3.list().get(0);
 
-                            session.save(address);
+                            if (address1.isEmpty()) {
 
-                            //complete checkout process
-                            saveOrders(session, transaction, address, user, responseJsonObject);
+                                responseJsonObject.addProperty("message", "Please fill address line 1");
+
+                            } else if (address2.isEmpty()) {
+
+                                responseJsonObject.addProperty("message", "Please fill address line 2");
+
+                            } else if (postal_code.isEmpty()) {
+
+                                responseJsonObject.addProperty("message", "Please fill postal code");
+
+                            } else if (postal_code.length() != 5) {
+
+                                responseJsonObject.addProperty("message", "Invalid postal code");
+
+                            } else if (!Validations.isInteger(postal_code)) {
+
+                                responseJsonObject.addProperty("message", "Invalid postal code");
+
+                            } else if (mobile.isEmpty()) {
+
+                                responseJsonObject.addProperty("message", "Please fill mobile number");
+
+                            } else if (!Validations.isMobileNumber(mobile)) {
+
+                                responseJsonObject.addProperty("message", "Invalid mobile number");
+
+                            } else {
+
+                                //create new address
+                                Address address = new Address();
+                                address.setCity(city);
+                                address.setFirst_name(first_name);
+                                address.setLast_name(last_name);
+                                address.setLine1(address1);
+                                address.setLine2(address2);
+                                address.setMobile(mobile);
+                                address.setPostal_code(postal_code);
+                                address.setUser(user);
+
+                                session.save(address);
+
+                                //complete checkout process
+                                saveOrders(session, transaction, address, user, responseJsonObject);
+
+                            }
 
                         }
 
                     }
 
                 }
-
             }
-
         } else {
 
             //not signed in
