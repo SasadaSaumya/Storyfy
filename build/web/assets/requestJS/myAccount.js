@@ -18,6 +18,9 @@ const loadProductFeatures = async () => {
         LoadUserData(json.userData);
         loadUserAddress(json.userAddressList);
 
+        loadUserAddedProducts(json.userAddedProductList, "userAdded");
+
+
     } else {
         console.log("Something went wrong");
 
@@ -188,5 +191,38 @@ const loadUserAddress = async (addressList) => {
 
     });
 
+
+};
+
+//loadUserAddedProducts
+const loadUserAddedProducts = async (dataList, prefix) => {
+
+    let productHtml = document.getElementById(prefix + "-product");
+    document.getElementById(prefix + "-product-main").innerHTML = "";
+
+    dataList.forEach(item => {
+
+        let productClone = productHtml.cloneNode(true);
+
+        productClone.querySelector("#" + prefix + "-product-image").src = "product-images/" + item.id + "/image1.png";
+
+        productClone.querySelector("#" + prefix + "-product-a1").href = "product.html?id=" + item.id;
+        productClone.querySelector("#" + prefix + "-product-a2").href = "product.html?id=" + item.id;
+
+        productClone.querySelector("#" + prefix + "-title").innerHTML = item.title;
+        productClone.querySelector("#" + prefix + "-author").innerHTML = item.author.name;
+
+        productClone.querySelector("#" + prefix + "-price").innerHTML = new Intl.NumberFormat(
+            "en-US",
+            {
+                minimumFractionDigits: 2
+            }
+        ).format(item.price);
+
+
+        const similarProductMain = document.getElementById(prefix + "-product-main");
+        similarProductMain.appendChild(productClone);
+
+    });
 
 };
