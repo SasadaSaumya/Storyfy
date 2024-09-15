@@ -1,6 +1,4 @@
-// JavaScript code to load products and handle pagination
-
-var stProduct = document.getElementById("product-card");
+var shopProduct = document.getElementById("product-card");
 var currentPage = 0;
 var paginationButton = document.getElementById("pagination-item");
 
@@ -10,6 +8,12 @@ const reset = () => {
 
 const loadProductFeatures = async () => {
     const popup = Notification();
+
+    const parameters = new URLSearchParams(window.location.search);
+    if (parameters.has("category")) {
+
+        const categoryNameUrl = parameters.get("category");
+    }
 
     try {
         const response = await fetch("LoadAllProducts");
@@ -52,19 +56,19 @@ const loadOption = (prefix, dataList) => {
 };
 
 const updateProductCard = (json) => {
-    let stProductContainer = document.getElementById("product-container");
-    stProductContainer.innerHTML = "";
+    let shopProductContainer = document.getElementById("product-container");
+    shopProductContainer.innerHTML = "";
 
     json.productList.forEach(product => {
-        let stProductClone = stProduct.cloneNode(true);
-        stProductClone.querySelector("#product-image").src = "product-images/" + product.id + "/image1.png";
-        stProductClone.querySelector("#product-title-1").innerHTML = product.title;
-        stProductClone.querySelector("#product-image-href").href = "product.html?id=" + product.id;
-        stProductClone.querySelector("#product-price").innerHTML = new Intl.NumberFormat("en-US", {
+        let shopProductClone = shopProduct.cloneNode(true);
+        shopProductClone.querySelector("#product-image").src = "product-images/" + product.id + "/image1.png";
+        shopProductClone.querySelector("#product-title-1").innerHTML = product.title;
+        shopProductClone.querySelector("#product-image-href").href = "product.html?id=" + product.id;
+        shopProductClone.querySelector("#product-price").innerHTML = new Intl.NumberFormat("en-US", {
             minimumFractionDigits: 2
         }).format(product.price);
 
-        stProductContainer.appendChild(stProductClone);
+        shopProductContainer.appendChild(shopProductClone);
     });
 
     // Pagination
@@ -76,35 +80,35 @@ const updateProductCard = (json) => {
     let pages = Math.ceil(productCount / prePageProductCount);
 
     if (currentPage != 0) {
-        let stpaginationButtonClonePrev = paginationButton.cloneNode(true);
-        stpaginationButtonClonePrev.innerHTML = "Prev";
-        stpaginationButtonClonePrev.addEventListener("click", () => {
+        let shoppaginationButtonClonePrev = paginationButton.cloneNode(true);
+        shoppaginationButtonClonePrev.innerHTML = "Prev";
+        shoppaginationButtonClonePrev.addEventListener("click", () => {
             currentPage--;
             searchProduct(currentPage * prePageProductCount);
         });
-        paginationContainer.appendChild(stpaginationButtonClonePrev);
+        paginationContainer.appendChild(shoppaginationButtonClonePrev);
     }
 
     for (let i = 0; i < pages; i++) {
-        let stpaginationButtonClone = paginationButton.cloneNode(true);
-        stpaginationButtonClone.innerHTML = i + 1;
-        stpaginationButtonClone.addEventListener("click", () => {
+        let shoppaginationButtonClone = paginationButton.cloneNode(true);
+        shoppaginationButtonClone.innerHTML = i + 1;
+        shoppaginationButtonClone.addEventListener("click", () => {
             currentPage = i;
             searchProduct(i * prePageProductCount);
         });
 
-        stpaginationButtonClone.className = i === currentPage ? "axil-btn btn-bg-secondary ml--10" : "axil-btn btn-bg-primary ml--10";
-        paginationContainer.appendChild(stpaginationButtonClone);
+        shoppaginationButtonClone.className = i === currentPage ? "btn-info  ml--10" : "btn-outline-info  ml--10";
+        paginationContainer.appendChild(shoppaginationButtonClone);
     }
 
     if (currentPage != (pages - 1)) {
-        let stpaginationButtonCloneNext = paginationButton.cloneNode(true);
-        stpaginationButtonCloneNext.innerHTML = "Next";
-        stpaginationButtonCloneNext.addEventListener("click", () => {
+        let shoppaginationButtonCloneNext = paginationButton.cloneNode(true);
+        shoppaginationButtonCloneNext.innerHTML = "Next";
+        shoppaginationButtonCloneNext.addEventListener("click", () => {
             currentPage++;
             searchProduct(currentPage * prePageProductCount);
         });
-        paginationContainer.appendChild(stpaginationButtonCloneNext);
+        paginationContainer.appendChild(shoppaginationButtonCloneNext);
     }
 };
 
