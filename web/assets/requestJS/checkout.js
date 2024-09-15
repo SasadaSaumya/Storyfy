@@ -11,7 +11,7 @@ payhere.onCompleted = function onCompleted(orderId) {
         message: "Order Placed. Thank You..."
     });
 
-    window.location = "index.html";
+    window.location = "invoice.html?orderId=" + orderId;
 
 };
 

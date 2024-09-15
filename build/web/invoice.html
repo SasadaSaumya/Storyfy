@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/icons/favicon-32x32.png">
+
+    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+
+    <script defer src="./assets/requestJS/invoice.js"></script>
+</head>
+
+<body onload="loadInvoice();">
+
+    <section>
+        <div class="container-fluid gap-3">
+
+            <div class="p-3 d-flex justify-content-between">
+                <a class="btn btn-secondary col-lg-2 col-12" href="index.html">Home</a>
+                <button class="btn btn-dark col-lg-2 col-12" onclick="printInvoice();">Print</button>
+            </div>
+
+            <div id="page"
+                class="col-12 d-flex flex-column justify-content-center align-items-center border border-1 p-lg-3 border-dark mb-3">
+                <div class="d-flex flex-row justify-content-between col-12  p-2 px-5">
+                    <div class="col-12 ">
+                        <h1 class="text-black m-0 logo">Storyfy</h1>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-column justify-content-center align-items-center col-12 gap-4 p-3 px-5">
+                    <h2 class="fw-semibold text-start">INVOICE</h2>
+                    <div class="row d-flex justify-content-between w-100">
+                        <div class="d-flex col-8 flex-column justify-content-center align-items-start gap-3">
+                            <div class="d-flex"><span class="my-fs-7">Invoice No :&nbsp;</span> <span class="my-fs-7"
+                                    id="invoiceNum">[Invoice No]</span></div>
+                            <div class="d-flex"><span class="my-fs-7">Date :&nbsp;</span> <span class="my-fs-7"
+                                    id="datetime">[Invoice
+                                    Date]</span></div>
+                            <span class="my-fs-6 fw-bold">Shipping Information</span>
+                            <div class="d-flex"><span class="my-fs-7">Name :&nbsp;</span> <span class="my-fs-7"
+                                    id="userName">[Full
+                                    Name]</span></div>
+                            <div class="d-flex"><span class="my-fs-7">Email :&nbsp;</span> <span class="my-fs-7"
+                                    id="email">[Email]</span></div>
+                            <div class="d-flex"><span class="my-fs-7">Mobile :&nbsp;</span> <span class="my-fs-7"
+                                    id="mobile">[Mobile]</span></div>
+                            <div class="d-flex"><span class="my-fs-7">Address :&nbsp;</span> <span class="my-fs-7"
+                                    id="address">[Address Line 1, Address Line 2, City, Postal Code]</span></div>
+                        </div>
+
+                        <div class="col-4 text-end">
+                            <div>
+                                <p class="my-fs-7">One Gallface Mall,<br />
+                                    Storyfy Main Branch<br />
+                                    Level 02,<br />
+                                    Colombo 00100
+                                </p>
+                                <p class="my-fs-7">info.storyfy@gmail.com</p>
+                                <p class="my-fs-7">075 99 59 599</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="w-100" />
+                    <table class="col-12 table table-striped"
+                        style="border-collapse: separate; border-spacing: 0 20px;">
+                        <thead>
+                            <tr class="bg-secondary p-1">
+                                <th scope="col" class="p-3">#</th>
+                                <th scope="col">Product Name</th>
+                                <th scope="col">Qty</th>
+
+                                <th scope="col" class="text-end pe-5">Price (Rs)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="invoiceTableMain">
+
+                            <tr id="itemRow">
+                                <th scope="row" id="id">1</th>
+                                <td id="p_name">Product Name</td>
+                                <td id="qty">1</td>
+
+                                <td class="text-end pe-md-5" id="price">1000.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="col-12 offset-lg-6 col-lg-6 d-flex flex-column gap-2 px-5 border pt-3 pb-3">
+                        <div class="d-flex w-100 justify-content-between align-items-center">
+                            <span>Subtotal (Rs.)</span>
+                            <span id="subTotal">Rs.[Subtotal]</span>
+                        </div>
+                        <div class="d-flex w-100 justify-content-between align-items-center">
+                            <span>Shipping (Rs.)</span>
+                            <span id="shipping">Rs.[Shipping Fee]</span>
+                        </div>
+                        <div class="d-flex w-100 justify-content-between align-items-center">
+                            <span>Tax</span>
+                            <span>Rs.00.00</span>
+                        </div>
+                        <div class="d-flex w-100 justify-content-between align-items-center">
+                            <span class="my-fs-6 fw-bold">Total (Rs.)</span>
+                            <span class="my-fs-6 fw-bold" id="total">Rs.[Total]</span>
+                        </div>
+                    </div>
+
+                    <hr class="w-100" />
+                    <span class="w-100 d-flex justify-content-start align-items-center my-fs-7">Additional Notes</span>
+                    <span class="w-100 d-flex justify-content-end align-items-end fs-8">© 2024 Storyfy</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>
