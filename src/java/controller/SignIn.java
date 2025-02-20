@@ -58,6 +58,7 @@ public class SignIn extends HttpServlet {
                 if (!user.getVerification().equals("verified")) {
                     //not verify   
                     request.getSession().setAttribute("email", user_DTO.getEmail());
+                 
                     response_DTO.setContent("Unverified");
 
                 } else {

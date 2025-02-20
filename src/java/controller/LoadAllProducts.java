@@ -2,6 +2,7 @@
 package controller;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import entity.Author;
 import entity.Category;
@@ -31,7 +32,7 @@ public class LoadAllProducts extends HttpServlet {
    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("success", false);

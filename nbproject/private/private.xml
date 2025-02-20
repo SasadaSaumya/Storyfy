@@ -11,24 +11,6 @@
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/sasad/Documents/My%20Projects/Web/Java%20EE/Storyfy/src/java/controller/LoadUserHeader.java</file>
-            <file>file:/C:/Users/sasad/Documents/My%20Projects/Web/Java%20EE/Storyfy/src/java/controller/LoadCheckout.java</file>
-            <file>file:/C:/Users/sasad/Documents/My%20Projects/Web/Java%20EE/Storyfy/src/java/controller/SignUp.java</file>
-            <file>file:/C:/Users/sasad/Documents/My%20Projects/Web/Java%20EE/Storyfy/src/java/model/FilterSignInCheck.java</file>
-            <file>file:/C:/Users/sasad/Documents/My%20Projects/Web/Java%20EE/Storyfy/src/java/controller/Checkout.java</file>
-            <file>file:/C:/Users/sasad/Documents/My%20Projects/Web/Java%20EE/Storyfy/src/java/controller/SignOut.java</file>
-            <file>file:/C:/Users/sasad/Documents/My%20Projects/Web/Java%20EE/Storyfy/src/java/entity/Order_Item.java</file>
-            <file>file:/C:/Users/sasad/Documents/My%20Projects/Web/Java%20EE/Storyfy/src/java/controller/IsSignIn.java</file>
-            <file>file:/C:/Users/sasad/Documents/My%20Projects/Web/Java%20EE/Storyfy/src/java/controller/UserVerification.java</file>
-            <file>file:/C:/Users/sasad/Documents/My%20Projects/Web/Java%20EE/Storyfy/src/java/controller/LoadInvoiceData.java</file>
-            <file>file:/C:/Users/sasad/Documents/My%20Projects/Web/Java%20EE/Storyfy/src/java/controller/AddProduct.java</file>
-            <file>file:/C:/Users/sasad/Documents/My%20Projects/Web/Java%20EE/Storyfy/src/java/controller/LoadSingleProduct.java</file>
-            <file>file:/C:/Users/sasad/Documents/My%20Projects/Web/Java%20EE/Storyfy/src/java/model/Mail.java</file>
-            <file>file:/C:/Users/sasad/Documents/My%20Projects/Web/Java%20EE/Storyfy/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/sasad/Documents/My%20Projects/Web/Java%20EE/Storyfy/src/java/controller/LoadProductFeatures.java</file>
-            <file>file:/C:/Users/sasad/Documents/My%20Projects/Web/Java%20EE/Storyfy/src/java/controller/SignIn.java</file>
-            <file>file:/C:/Users/sasad/Documents/My%20Projects/Web/Java%20EE/Storyfy/src/java/controller/SearchProducts.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
