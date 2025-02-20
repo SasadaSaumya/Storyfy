@@ -12,10 +12,11 @@ Storyfy online book store
 - Java EE 
 - GlassFish Server
 - MySQL & Hibernate
-- Payment gateway integration (PayHere)
+- Payment gateway integration [(PayHere)] (https://www.payhere.lk/)
 - Email Sending 
-- File Uploading (https://www.payhere.lk/)
+- File Uploading 
 - PDF Download 
+- etc
 
 ## Author
 Sasanda Saumya
